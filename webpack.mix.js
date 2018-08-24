@@ -11,5 +11,10 @@ let mix = require('laravel-mix');
  |
  */
 
+process.on('SIGTSTP', () => process.exit(1));
+let mode = process.env.WEBPACK_SERVE ? 'development' : 'production';
+mix.disableNotifications();
+
+mix.browserSync('laravel56');
 mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+    .sass('resources/assets/sass/app.scss', 'public/css').version();

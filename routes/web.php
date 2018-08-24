@@ -11,29 +11,34 @@
 |
 */
 
+
+use App\Models\Campaigns;
+
 Route::get('/', function () {
-    //GVD calc;
-    $exp = 6;
-    $army = 7;
-    $army_grow = 1.3;
-    $total_exp = 0;
+//    //GVD calc;
+//    $exp = 6;
+//    $army = 7;
+//    $army_grow = 1.3;
+//    $total_exp = 0;
+//
+//    $results = [0];
+//
+//    while($army < 150) {
+//        $total_exp += round($army*$exp/5);
+//
+//        $results[] = [
+//            'army' => $army,
+//            'exp' => round($army*$exp/5)
+//        ];
+//
+//        $army = round($army * $army_grow);
+//    }
+//
+//    dd($results);
 
-    $results = [0];
+//    $bulks = \DB::table('users')->where('id', '127')->pluck('id');
+//    $campaigns = Campaigns::where('id', 6)->first();
+//    dd($campaigns->toArray());
 
-    while($army < 150) {
-        $total_exp += round($army*$exp/5);
-
-        $results[] = [
-            'army' => $army,
-            'exp' => round($army*$exp/5)
-        ];
-
-        $army = round($army * $army_grow);
-    }
-
-    dd($results);
-
-
-
-    return view('welcome');
+    return view('frontend.index');
 });
