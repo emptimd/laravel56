@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>InfyOm Generator</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Bootstrap 3.3.7 -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
@@ -26,7 +26,8 @@
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
-    @yield('css')
+
+    @stack('css')
 </head>
 
 <body class="skin-blue sidebar-mini">
@@ -99,9 +100,9 @@
         </div>
 
         <!-- Main Footer -->
-        <footer class="main-footer" style="max-height: 100px;text-align: center">
-            <strong>Copyright © 2016 <a href="#">Company</a>.</strong> All rights reserved.
-        </footer>
+        {{--<footer class="main-footer" style="max-height: 100px;text-align: center">--}}
+            {{--<strong>Copyright © 2016 <a href="#">Company</a>.</strong> All rights reserved.--}}
+        {{--</footer>--}}
 
     </div>
 @else
@@ -153,6 +154,13 @@
 
     <!-- jQuery 3.1.1 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <!-- AdminLTE App -->
@@ -161,6 +169,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
 
-    @yield('scripts')
+    @stack('scripts')
 </body>
 </html>

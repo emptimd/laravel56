@@ -14,12 +14,12 @@ class CreateTableStores extends Migration
     public function up()
     {
         Schema::create('stores', function (Blueprint $table) {
-            $table->unsignedSmallInteger('id');
+            $table->smallIncrements('id');
             $table->string('name_ro');
             $table->string('name_ru');
-
-            $table->primary('id');
-
+            $table->string('description_ro')->nullable();
+            $table->string('description_ru')->nullable();
+            $table->string('logo')->nullable();
         });
     }
 

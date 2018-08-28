@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableProduct extends Migration
+class CreateTableStoreCategories extends Migration
 {
     /**
      * Run the migrations.
@@ -13,29 +13,16 @@ class CreateTableProduct extends Migration
      */
     public function up()
     {
-        Schema::create('products', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name_ro');
-            $table->string('description_ro')->nullable();
-            $table->string('path_ro');
+        Schema::create('store_categories', function (Blueprint $table) {
+            $table->smallIncrements('id');
 
-            $table->string('name_ru')->nullable();
-            $table->string('description_ru')->nullable();
-            $table->string('path_ru')->nullable();
-
-            $table->date('until')->nullable();;
             $table->unsignedTinyInteger('category_id');
             $table->unsignedSmallInteger('store_id');
-
-            $table->integer('views')->default(0);
-
-            $table->timestamps();
 
             $table->index('category_id');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->index('store_id');
             $table->foreign('store_id')->references('id')->on('stores')->onDelete('cascade');
-
         });
     }
 
@@ -46,6 +33,6 @@ class CreateTableProduct extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('store_categories');
     }
 }

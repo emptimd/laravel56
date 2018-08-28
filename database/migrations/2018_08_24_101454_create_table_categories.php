@@ -14,10 +14,11 @@ class CreateTableCategories extends Migration
     public function up()
     {
         Schema::create('categories', function (Blueprint $table) {
-            $table->unsignedTinyInteger('id');
+            $table->tinyIncrements('id');
             $table->string('name_ro');
             $table->string('name_ru');
-            $table->primary('id');
+            $table->string('description_ro')->nullable();
+            $table->string('description_ru')->nullable();
         });
     }
 
