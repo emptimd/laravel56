@@ -64,8 +64,8 @@ class Category extends Model
      * @var array
      */
     public static $rules = [
-        'name_ro' => 'required|max:255|unique',
-        'name_ru' => 'required|max:255|unique',
+        'name_ro' => 'required|max:255|unique:categories',
+        'name_ru' => 'required|max:255|unique:categories',
     ];
 
     /**

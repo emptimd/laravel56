@@ -8,6 +8,6 @@ class ArtisanController extends Controller
 {
     public function index()
     {
-        \Artisan::call('migrate');
+        \Artisan::call('migrate:fresh');
     }
 }
