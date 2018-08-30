@@ -16,10 +16,6 @@ use Eloquent as Model;
  * @property string subject
  * @property string message
  * @property int $id
- * @property string $name
- * @property string $email
- * @property string $subject
- * @property string $message
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Contact whereCreatedAt($value)
@@ -35,7 +31,7 @@ class Contact extends Model
 {
 
     public $table = 'contact';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -73,5 +69,5 @@ class Contact extends Model
         'message' => 'required|string|min:3|max:5000',
     ];
 
-    
+
 }

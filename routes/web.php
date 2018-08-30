@@ -39,38 +39,38 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth.admin'], function(){
 
     Route::post('products/remove_photos', ['as'=> 'admin.products.removePhotos', 'uses' => 'ProductController@removePhotos']);
 
-//    Route::get('artisan', ['as'=> 'admin.products.index', 'uses' => 'ArtisanController@index']);
+    Route::get('stores', ['as'=> 'admin.stores.index', 'uses' => 'StoreController@index']);
+    Route::post('stores', ['as'=> 'admin.stores.store', 'uses' => 'StoreController@store']);
+    Route::get('stores/create', ['as'=> 'admin.stores.create', 'uses' => 'StoreController@create']);
+    Route::put('stores/{stores}', ['as'=> 'admin.stores.update', 'uses' => 'StoreController@update']);
+    Route::patch('stores/{stores}', ['as'=> 'admin.stores.update', 'uses' => 'StoreController@update']);
+    Route::delete('stores/{stores}', ['as'=> 'admin.stores.destroy', 'uses' => 'StoreController@destroy']);
+    Route::get('stores/{stores}', ['as'=> 'admin.stores.show', 'uses' => 'StoreController@show']);
+    Route::get('stores/{stores}/edit', ['as'=> 'admin.stores.edit', 'uses' => 'StoreController@edit']);
+
+
+    Route::get('storeCategories', ['as'=> 'admin.storeCategories.index', 'uses' => 'StoreCategoryController@index']);
+    Route::post('storeCategories', ['as'=> 'admin.storeCategories.store', 'uses' => 'StoreCategoryController@store']);
+    Route::get('storeCategories/create', ['as'=> 'admin.storeCategories.create', 'uses' => 'StoreCategoryController@create']);
+    Route::put('storeCategories/{storeCategories}', ['as'=> 'admin.storeCategories.update', 'uses' => 'StoreCategoryController@update']);
+    Route::patch('storeCategories/{storeCategories}', ['as'=> 'admin.storeCategories.update', 'uses' => 'StoreCategoryController@update']);
+    Route::delete('storeCategories/{storeCategories}', ['as'=> 'admin.storeCategories.destroy', 'uses' => 'StoreCategoryController@destroy']);
+    Route::get('storeCategories/{storeCategories}', ['as'=> 'admin.storeCategories.show', 'uses' => 'StoreCategoryController@show']);
+    Route::get('storeCategories/{storeCategories}/edit', ['as'=> 'admin.storeCategories.edit', 'uses' => 'StoreCategoryController@edit']);
+
+
+    Route::get('contacts', ['as'=> 'admin.contacts.index', 'uses' => 'ContactController@index']);
+//    Route::post('contacts', ['as'=> 'admin.contacts.store', 'uses' => 'ContactController@store']);
+//    Route::get('contacts/create', ['as'=> 'admin.contacts.create', 'uses' => 'ContactController@create']);
+//    Route::put('contacts/{contacts}', ['as'=> 'admin.contacts.update', 'uses' => 'ContactController@update']);
+//    Route::patch('contacts/{contacts}', ['as'=> 'admin.contacts.update', 'uses' => 'ContactController@update']);
+    Route::delete('contacts/{contacts}', ['as'=> 'admin.contacts.destroy', 'uses' => 'ContactController@destroy']);
+    Route::get('contacts/{contacts}', ['as'=> 'admin.contacts.show', 'uses' => 'ContactController@show']);
+//    Route::get('contacts/{contacts}/edit', ['as'=> 'admin.contacts.edit', 'uses' => 'ContactController@edit']);
+
+
 });
 
-Route::get('artisan', ['as'=> 'admin.artisan.index', 'uses' => 'ArtisanController@index']);
 
 
-
-//Route::get('admin/productPhotos', ['as'=> 'admin.productPhotos.index', 'uses' => 'ProductPhotoController@index']);
-//Route::post('admin/productPhotos', ['as'=> 'admin.productPhotos.store', 'uses' => 'ProductPhotoController@store']);
-//Route::get('admin/productPhotos/create', ['as'=> 'admin.productPhotos.create', 'uses' => 'ProductPhotoController@create']);
-//Route::put('admin/productPhotos/{productPhotos}', ['as'=> 'admin.productPhotos.update', 'uses' => 'ProductPhotoController@update']);
-//Route::patch('admin/productPhotos/{productPhotos}', ['as'=> 'admin.productPhotos.update', 'uses' => 'ProductPhotoController@update']);
-//Route::delete('admin/productPhotos/{productPhotos}', ['as'=> 'admin.productPhotos.destroy', 'uses' => 'ProductPhotoController@destroy']);
-//Route::get('admin/productPhotos/{productPhotos}', ['as'=> 'admin.productPhotos.show', 'uses' => 'ProductPhotoController@show']);
-//Route::get('admin/productPhotos/{productPhotos}/edit', ['as'=> 'admin.productPhotos.edit', 'uses' => 'ProductPhotoController@edit']);
-
-
-Route::get('admin/stores', ['as'=> 'admin.stores.index', 'uses' => 'StoreController@index']);
-Route::post('admin/stores', ['as'=> 'admin.stores.store', 'uses' => 'StoreController@store']);
-Route::get('admin/stores/create', ['as'=> 'admin.stores.create', 'uses' => 'StoreController@create']);
-Route::put('admin/stores/{stores}', ['as'=> 'admin.stores.update', 'uses' => 'StoreController@update']);
-Route::patch('admin/stores/{stores}', ['as'=> 'admin.stores.update', 'uses' => 'StoreController@update']);
-Route::delete('admin/stores/{stores}', ['as'=> 'admin.stores.destroy', 'uses' => 'StoreController@destroy']);
-Route::get('admin/stores/{stores}', ['as'=> 'admin.stores.show', 'uses' => 'StoreController@show']);
-Route::get('admin/stores/{stores}/edit', ['as'=> 'admin.stores.edit', 'uses' => 'StoreController@edit']);
-
-
-Route::get('admin/storeCategories', ['as'=> 'admin.storeCategories.index', 'uses' => 'StoreCategoryController@index']);
-Route::post('admin/storeCategories', ['as'=> 'admin.storeCategories.store', 'uses' => 'StoreCategoryController@store']);
-Route::get('admin/storeCategories/create', ['as'=> 'admin.storeCategories.create', 'uses' => 'StoreCategoryController@create']);
-Route::put('admin/storeCategories/{storeCategories}', ['as'=> 'admin.storeCategories.update', 'uses' => 'StoreCategoryController@update']);
-Route::patch('admin/storeCategories/{storeCategories}', ['as'=> 'admin.storeCategories.update', 'uses' => 'StoreCategoryController@update']);
-Route::delete('admin/storeCategories/{storeCategories}', ['as'=> 'admin.storeCategories.destroy', 'uses' => 'StoreCategoryController@destroy']);
-Route::get('admin/storeCategories/{storeCategories}', ['as'=> 'admin.storeCategories.show', 'uses' => 'StoreCategoryController@show']);
-Route::get('admin/storeCategories/{storeCategories}/edit', ['as'=> 'admin.storeCategories.edit', 'uses' => 'StoreCategoryController@edit']);
+Route::get('artisan', ['as'=> 'admin.artisan.index', 'uses' => 'ArtisanController@index'])->middleware('auth.admin');

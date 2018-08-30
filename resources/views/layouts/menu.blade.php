@@ -15,3 +15,7 @@
 <li class="{{ Request::is('storeCategories*') ? 'active' : '' }}">
     <a href="{!! route('admin.storeCategories.index') !!}"><i class="fa fa-edit"></i><span>Store Categories</span></a>
 </li>
+<li class="{{ Request::is('contacts*') ? 'active' : '' }}">
+    <a href="{!! route('admin.contacts.index') !!}"><i class="fa fa-edit"></i><span>Contacts</span></a>
+</li>
+
