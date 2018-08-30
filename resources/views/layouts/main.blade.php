@@ -1,3 +1,7 @@
+<?php
+$categories = App\Models\Category::all();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,17 +33,41 @@
     <!-- Header Section -->
     <header>
         <div class="container">
-
             <div class="header-section">
                 <div class="row">
                     <div class="col-md-3">
                         <div class="logo">
-                            <a  href="index.html"><img class="img-responsive" src="/img/logo.png" alt=""></a>
+                            <a  href="/"><img class="img-responsive" src="/img/logo_ro.png" alt=""></a>
                         </div><!--logo-->
                     </div><!--col-md-3-->
 
+                    <div class="col-md-6">
+                        <nav class="navbar main-menu navbar-inverse navbar-static-top" role="navigation">
+                            <div class="container">
+                                <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle collapsed pull-left" data-toggle="offcanvas">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+                                </div>
+                                <div id="navbar" class="collapse navbar-collapse sidebar-offcanvas">
+                                    <ul class="nav navbar-nav" style="padding-top: 8px;">
+                                        <li class="hidden"><a href="#page-top"></a></li>
+                                        @foreach($categories as $category)
+                                            <li><a class="page-scroll" href="{{ url('category/'.$category->id) }}">{{ $category->name_ro }}</a></li>
+                                        @endforeach
 
-                    <div class="col-md-9">
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+                        <!-- .navbar -->
+                    </div>
+
+
+                    <div class="col-md-3">
                         <div class="social_icon1">
                             <a class="icons-sm fb-ic"><i class="fa fa-facebook"></i></a>
                             <!--Twitter-->
@@ -56,29 +84,7 @@
             </div><!--header-section-->
         </div><!-- /.container -->
 
-        <nav class="navbar main-menu navbar-inverse navbar-static-top" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed pull-left" data-toggle="offcanvas">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div>
-                <div id="navbar" class="collapse navbar-collapse sidebar-offcanvas">
-                    <ul class="nav navbar-nav">
-                        <li class="hidden"><a href="#page-top"></a></li>
-                        <li><a class="page-scroll" href="category.html">Supermarket</a></li>
 
-                        <li><a class="page-scroll" href="category.html">Electronice & Electrocastice</a></li>
-                        <li><a class="page-scroll" href="category.html">Bricolaj</a></li>
-                        <li><a class="page-scroll" href="category.html">Farmacii & Cosmetice</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <!-- .navbar -->
     </header>
 
     <!--main content goes here-->
@@ -105,7 +111,7 @@
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <ul class="nav navbar-nav ">
-                                            <li><a href="../navbar/">Baseball</a></li>
+                                            <li><a href="{{ url('contact') }}">Contact Us</a></li>
                                             <li><a href="../navbar-static-top/">Football</a></li>
                                             <li><a href="./">Cricket</a></li>
                                             <li><a href="../navbar/">Rugbi</a></li>

@@ -29,11 +29,11 @@
 <div class="form-group col-sm-6">
     {!! Form::label('description_ru', 'Description Ru:') !!}
     {!! Form::text('description_ru', null, ['class' => 'form-control']) !!}
-</div>
+</div>{{----}}
 
 <!-- Path Ru Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('path_ru', 'File Ro:') !!}
+    {!! Form::label('path_ru', 'File Ru:') !!}
     <div class="file-loading">
         <input id="file-2" type="file" name="path_ru" class="file" data-msg-placeholder="File RU...">
         {{--<input id="file-1" type="file" name="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="2">--}}

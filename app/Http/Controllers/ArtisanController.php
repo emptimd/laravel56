@@ -8,6 +8,9 @@ class ArtisanController extends Controller
 {
     public function index()
     {
-        \Artisan::call('migrate:fresh');
+//        \Artisan::call('migrate:fresh');
+        \Artisan::call('storage:link');
+
+
     }
 }

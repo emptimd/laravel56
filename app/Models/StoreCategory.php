@@ -44,7 +44,7 @@ class StoreCategory extends Model
      * @var array
      */
     protected $casts = [
-        'category_id' => 'boolean'
+        'category_id' => 'integer'
     ];
 
     /**

@@ -19,39 +19,39 @@
                         <div id="featured-news-carousal" class="carousel slide" data-ride="carousel">
                             <!-- Wrapper for slides -->
                             <div class="carousel-inner" role="listbox">
-                                <div class="item active feature_news_item">
-                                    <div class="item_wrapper">
-                                        <div class="item_img">
-                                            <img class="img-responsive" src="/img/img-carousel1.jpg" alt="Chania">
-                                        </div> <!--item_img-->
-                                        <div class="item_title_date">
-                                            <div class="news_item_title">
-                                                <h2><a href="single.html">Seamlessly embrace B2C catalysts for change vis-a-vis economically sound communities.</a></h2>
-                                            </div>
-                                            <div class="item_meta"><a href="#">20Aug- 2015,</a> by:<a href="#">Jhonson</a></div>
-                                        </div> <!--item_title_date-->
-                                    </div>	<!--item_wrapper-->
-                                    <div class="item_content">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</div>
+                                @foreach($silder_products as $product)
+                                    <div class="item feature_news_item {{ $loop->first ? 'active' : '' }}">
+                                        <div class="item_wrapper">
+                                            <div class="item_img">
+                                                <img class="img-responsive" src="{{ url('storage/'.$product->path_ro) }}" alt="Image">
+                                            </div> <!--item_img-->  {{----}}
+                                            <div class="item_title_date">
+                                                <div class="news_item_title">
+                                                    <h2><a href="{{ url('catalog/'.$product->id) }}">{{ $product->name_ro }}</a></h2>
+                                                </div>
+                                                <div class="item_meta"><a href="#">{{ $product->until->format('Y-m-d') }}</a></div>
+                                            </div> <!--item_title_date-->
+                                        </div> <!--item_wrapper-->
+                                        <div class="item_content"></div>
+                                    </div><!--feature_news_item-->
+                                @endforeach
 
-                                </div><!--feature_news_item-->
 
-                                <div class="item feature_news_item">
-                                    <div class="item_wrapper">
-                                        <div class="item_img">
-                                            <img class="img-responsive" src="/img/img-carousel2.jpg" alt="Chania">
-                                        </div> <!--item_img-->
-                                        <div class="item_title_date">
-                                            <div class="news_item_title">
-                                                <h2><a href="#">Manchester United want to Back Cristiano Ronaldo natus error sit.</a></h2>
-                                            </div>
-                                            <div class="item_meta"><a href="#">20Aug- 2015,</a> by:<a href="#">Jhonson</a></div>
-                                        </div> <!--item_title_date-->
-                                    </div> <!--item_wrapper-->
+                                {{--<div class="item active feature_news_item">--}}
+                                    {{--<div class="item_wrapper">--}}
+                                        {{--<div class="item_img">--}}
+                                            {{--<img class="img-responsive" src="/img/img-carousel1.jpg" alt="Chania">--}}
+                                        {{--</div> <!--item_img-->--}}
+                                        {{--<div class="item_title_date">--}}
+                                            {{--<div class="news_item_title">--}}
+                                                {{--<h2><a href="single.html">Seamlessly embrace B2C catalysts for change vis-a-vis economically sound communities.</a></h2>--}}
+                                            {{--</div>--}}
+                                            {{--<div class="item_meta"><a href="#">20Aug- 2015,</a> by:<a href="#">Jhonson</a></div>--}}
+                                        {{--</div> <!--item_title_date-->--}}
+                                    {{--</div>	<!--item_wrapper-->--}}
+                                    {{--<div class="item_content"></div>--}}
 
-                                    <div class="item_content">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.
-                                    </div>
-
-                                </div><!--feature_news_item-->
+                                {{--</div><!--feature_news_item-->--}}
 
 
                                 <!-- Left and right controls -->
@@ -85,8 +85,7 @@
                                                 <div class="item_meta"><a href="#">20Aug- 2015,</a> by:<a href="#">Jhonson</a></div>
                                             </div><!--item_title_date-->
                                         </div> <!--item_wrapper-->
-                                        <div class="item_content">Sed ut perspiciatis unde omnis iste natus error sit
-                                        </div>
+                                        <div class="item_content"></div>
 
                                     </div><!--item-->
                                 </div><!--feature_news_item-->
@@ -106,8 +105,7 @@
                                                 <div class="item_meta"><a href="#">20Aug- 2015,</a> by:<a href="#">Jhonson</a></div>
                                             </div><!--item_title_date-->
                                         </div> <!--item_wrapper-->
-                                        <div class="item_content">Sed ut perspiciatis unde omnis iste natus error sit
-                                        </div>
+                                        <div class="item_content"></div>
 
                                     </div><!--item-->
                                 </div><!--feature_news_item-->
@@ -140,8 +138,7 @@
                                             <div class="item_meta"><a href="#">20Aug- 2015,</a> by:<a href="#">Jhonson</a></div>
                                         </div><!--item_title_date-->
                                     </div><!--item_wrapper-->
-                                    <div class="item_content">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.
-                                    </div><!--item_content-->
+                                    <div class="item_content"></div><!--item_content-->
 
                                 </div><!--feature_news_item-->
                             </div><!--col-md-7-->
@@ -221,8 +218,7 @@
                                             <div class="item_meta"><a href="#">20Aug- 2015,</a> by:<a href="#">Jhonson</a></div>
                                         </div><!--item_title_date-->
                                     </div><!--item_wrapper-->
-                                    <div class="item_content">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.
-                                    </div>
+                                    <div class="item_content"></div>
 
                                 </div><!--feature_news_item-->
                             </div><!--col-md-7-->
@@ -301,8 +297,7 @@
                                             <div class="item_meta"><a href="#">20Aug- 2015,</a> by:<a href="#">Jhonson</a></div>
                                         </div><!--item_title_date-->
                                     </div><!--item_wrapper-->
-                                    <div class="item_content">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.
-                                    </div>
+                                    <div class="item_content"></div>
 
                                 </div><!--feature_news_item-->
                             </div><!--col-md-7-->
@@ -382,8 +377,7 @@
                                             <div class="item_meta"><a href="#">20Aug- 2015,</a> by:<a href="#">Jhonson</a></div>
                                         </div><!--item_title_date-->
                                     </div><!--item_wrapper-->
-                                    <div class="item_content">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.
-                                    </div>
+                                    <div class="item_content"></div>
 
                                 </div><!--feature_news_item-->
                             </div><!--col-md-7-->
@@ -449,123 +443,8 @@
 
                 </div><!--col-md-9-->
 
-                <div class="col-md-3">
-
-                    <div class="tab sitebar">
-                        <ul class="nav nav-tabs">
-                            <li class="active"><a  href="#1" data-toggle="tab">Latest</a></li>
-                            <li><a href="#2" data-toggle="tab">Populer</a></li>
-                        </ul>
-
-                        <div class="tab-content">
-                            <div class="tab-pane active" id="1">
-                                <div class="media">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="/img/img-list.jpg" alt="Generic placeholder image"></a>
-                                    </div><!--media-left-->
-                                    <div class="media-body">
-                                        <h4 class="media-heading"><a href="#">Spain going to made class football</a></h4>
-                                        <span class="rating">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star-half-full"></i>
-									</span>
-                                    </div><!--media-body-->
-                                </div><!--media-->
-
-                                <div class="media">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="/img/img-list5.jpg" alt="Generic placeholder image"></a>
-                                    </div><!--media-left-->
-                                    <div class="media-body">
-                                        <h4 class="media-heading"><a href="#">Spain going to made class football</a></h4>
-                                        <span class="rating">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star-half-full"></i>
-									</span>
-                                    </div><!--media-body-->
-                                </div><!--media-->
-
-                                <div class="media">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="/img/img-list2.jpg" alt="Generic placeholder image"></a>
-                                    </div><!--media-left-->
-                                    <div class="media-body">
-                                        <h3 class="media-heading"><a href="#">Spain going to made class football</a></h3>
-                                        <span class="rating">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star-half-full"></i>
-									</span>
-                                    </div><!--media-body-->
-                                </div><!--media-->
-
-                                <div class="media">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="/img/img-list3.jpg" alt="Generic placeholder image"></a>
-                                    </div><!--media-left-->
-                                    <div class="media-body">
-                                        <h3 class="media-heading"><a href="#">Spain going to made class football</a></h3>
-                                        <span class="rating">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star-half-full"></i>
-									</span>
-                                    </div><!--media-body-->
-                                </div><!--media-->
-                            </div><!--tab-pane-->
-
-                            <div class="tab-pane" id="2">
-                                <div class="media">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="/img/img-list4.jpg" alt="Generic placeholder image"></a>
-                                    </div><!--media-left-->
-                                    <div class="media-body">
-                                        <h3 class="media-heading"><a href="#">Spain going to made class football</a></h3>
-                                        <span class="rating">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star-half-full"></i>
-									</span>
-                                    </div><!--media-body-->
-                                </div><!--media-->
-
-                                <div class="media">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="/img/img-list.jpg" alt="Generic placeholder image"></a>
-                                    </div><!--media-left-->
-                                    <div class="media-body">
-                                        <h3 class="media-heading"><a href="#">Spain going to made class football</a></h3>
-                                        <span class="rating">
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star"></i>
-										<i class="fa fa-star-half-full"></i>
-									</span>
-                                    </div><!--media-body-->
-                                </div><!--media-->
-                            </div><!--tab-pane-->
-                        </div><!--tab-content-->
-                    </div><!--tab-->
-
-
-                    <div class="ad">
-                        <img class="img-responsive" src="/img/img-ad2.jpg" alt="img" />
-                    </div>
-
-                </div>
+                {{--include sidebar--}}
+                @include('frontend._sidebar')
             </div>
         </div>
     </section><!--feature_category_section-->

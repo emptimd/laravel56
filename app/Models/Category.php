@@ -51,7 +51,7 @@ class Category extends Model
      * @var array
      */
     protected $casts = [
-        'id' => 'boolean',
+        'id' => 'integer',
         'name_ro' => 'string',
         'name_ru' => 'string',
         'description_ro' => 'string',
