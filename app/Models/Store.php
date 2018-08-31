@@ -39,8 +39,6 @@ class Store extends Model
 
     public $timestamps = false;
 
-
-
     public $fillable = [
         'name_ro',
         'name_ru',

@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\StoreDataTable;
+use App\Http\Requests;
 use App\Http\Requests\CreateStoreRequest;
 use App\Http\Requests\UpdateStoreRequest;
 use App\Repositories\StoreRepository;
-use App\Http\Controllers\AppBaseController;
-use Illuminate\Http\Request;
 use Flash;
-use Prettus\Repository\Criteria\RequestCriteria;
+use App\Http\Controllers\AppBaseController;
 use Response;
 
 class StoreController extends AppBaseController
@@ -24,16 +24,12 @@ class StoreController extends AppBaseController
     /**
      * Display a listing of the Store.
      *
-     * @param Request $request
+     * @param StoreDataTable $storeDataTable
      * @return Response
      */
-    public function index(Request $request)
+    public function index(StoreDataTable $storeDataTable)
     {
-        $this->storeRepository->pushCriteria(new RequestCriteria($request));
-        $stores = $this->storeRepository->all();
-
-        return view('admin.stores.index')
-            ->with('stores', $stores);
+        return $storeDataTable->render('admin.stores.index');
     }
 
     /**

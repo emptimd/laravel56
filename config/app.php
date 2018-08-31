@@ -80,6 +80,10 @@ return [
 
     'locale' => 'en',
 
+    'locales' => ['en' => 'English', 'ro' => 'Română', 'ru-RU' => 'Russian'],
+
+    'skip_locales' => ['admin', 'translations'],
+
     /*
     |--------------------------------------------------------------------------
     | Application Fallback Locale

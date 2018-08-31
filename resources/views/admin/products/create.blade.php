@@ -1,30 +1,40 @@
-@extends('layouts.app')
+@extends("la.layouts.app")
 
-@push('css')
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.7/css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>
-@endpush
+@section("contentheader_title")
+    <a href="{!! url('admin/products') !!}">Products</a> :
+@endsection
+@section("contentheader_description", 'Create Product')
+@section("section", "Products")
+@section("section_url", url('admin/products'))
+@section("sub_section", "Create")
 
-@section('content')
-    <section class="content-header">
-        <h1>
-            Product
-        </h1>
-    </section>
-    <div class="content">
-        @include('adminlte-templates::common.errors')
-        <div class="box box-primary">
+@section("htmlheader_title", "Create Product")
 
-            <div class="box-body">
-                <div class="row">
-                    {!! Form::open(['route' => 'admin.products.store','enctype' => 'multipart/form-data']) !!}
-                        @include('admin.products.fields')
+@section("main-content")
+    <div class="box">
+        <div class="box-header">
+
+        </div>
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    {!! Form::open(['route' => 'admin.products.store']) !!}
+
+                    @include('admin.products.fields')
 
                     {!! Form::close() !!}
                 </div>
             </div>
         </div>
     </div>
+
 @endsection
+
+
+
+@push('styles')
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.7/css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>
+@endpush
 
 @push('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.7/js/fileinput.js" type="text/javascript"></script>

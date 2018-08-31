@@ -1,25 +1,18 @@
-@extends('layouts.app')
+@extends("la.layouts.app")
 
-@section('content')
-    <section class="content-header">
-        <h1 class="pull-left">Contacts</h1>
-        {{--<h1 class="pull-right">--}}
-           {{--<a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('admin.contacts.create') !!}">Add New</a>--}}
-        {{--</h1>--}}
-    </section>
-    <div class="content">
-        <div class="clearfix"></div>
+@section("contentheader_title", "Contacts")
+@section("section", "Contacts")
+@section("sub_section", "Listing")
+@section("htmlheader_title", "Contacts Listing")
 
-        @include('flash::message')
 
-        <div class="clearfix"></div>
-        <div class="box box-primary">
-            <div class="box-body">
-                    @include('admin.contacts.table')
-            </div>
-        </div>
-        <div class="text-center">
-        
+@section('main-content')
+    @include('flash::message')
+
+    <div class="clearfix"></div>
+    <div class="box box-success">
+        <div class="box-body">
+            @include('admin.contacts.table')
         </div>
     </div>
 @endsection

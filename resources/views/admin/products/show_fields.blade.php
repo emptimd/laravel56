@@ -1,78 +1,73 @@
-<!-- Id Field -->
-<div class="form-group">
-    {!! Form::label('id', 'Id:') !!}
-    <p>{!! $product->id !!}</p>
-</div>
-
 <!-- Name Ro Field -->
 <div class="form-group">
-    {!! Form::label('name_ro', 'Name Ro:') !!}
-    <p>{!! $product->name_ro !!}</p>
+    {!! Form::label('name_ro', 'Name Ro:', ['class' =>'col-md-2']) !!}
+    <div class="col-md-10">{!! $product->name_ro !!}</div>
 </div>
 
 <!-- Description Ro Field -->
 <div class="form-group">
-    {!! Form::label('description_ro', 'Description Ro:') !!}
-    <p>{!! $product->description_ro !!}</p>
+    {!! Form::label('description_ro', 'Description Ro:', ['class' =>'col-md-2']) !!}
+    <div class="col-md-10">{!! $product->description_ro !!}</div>
 </div>
 
 <!-- Path Ro Field -->
 <div class="form-group">
-    {!! Form::label('path_ro', 'Path Ro:') !!}
-    <p>{!! $product->path_ro !!}</p>
+    {!! Form::label('path_ro', 'Path Ro:', ['class' =>'col-md-2']) !!}
+{{--    <div class="col-md-10">{!! $product->path_ro !!}</div>--}}
+    <div class="uploaded_image"><img src="{{ url('storage/'.$product->path_ro) }}" alt=""></div>
 </div>
 
 <!-- Name Ru Field -->
 <div class="form-group">
-    {!! Form::label('name_ru', 'Name Ru:') !!}
-    <p>{!! $product->name_ru !!}</p>
+    {!! Form::label('name_ru', 'Name Ru:', ['class' =>'col-md-2']) !!}
+    <div class="uploaded_image"><img src="{{ url('storage/'.$product->path_ru) }}" alt=""></div>
 </div>
 
 <!-- Description Ru Field -->
 <div class="form-group">
-    {!! Form::label('description_ru', 'Description Ru:') !!}
-    <p>{!! $product->description_ru !!}</p>
+    {!! Form::label('description_ru', 'Description Ru:', ['class' =>'col-md-2']) !!}
+    <div class="col-md-10">{!! $product->description_ru !!}</div>
 </div>
 
 <!-- Path Ru Field -->
 <div class="form-group">
-    {!! Form::label('path_ru', 'Path Ru:') !!}
-    <p>{!! $product->path_ru !!}</p>
+    {!! Form::label('path_ru', 'Path Ru:', ['class' =>'col-md-2']) !!}
+    <div class="col-md-10">{!! $product->path_ru !!}</div>
 </div>
 
 <!-- Until Field -->
 <div class="form-group">
-    {!! Form::label('until', 'Until:') !!}
-    <p>{!! $product->until !!}</p>
+    {!! Form::label('until', 'Until:', ['class' =>'col-md-2']) !!}
+    <div class="col-md-10">{!! $product->until !!}</div>
 </div>
 
 <!-- Category Id Field -->
 <div class="form-group">
-    {!! Form::label('category_id', 'Category Id:') !!}
-    <p>{!! $product->category_id !!}</p>
+    {!! Form::label('category_id', 'Category Id:', ['class' =>'col-md-2']) !!}
+    <div class="col-md-10">{!! $product->category->name_ro !!}</div>
 </div>
 
 <!-- Store Id Field -->
 <div class="form-group">
-    {!! Form::label('store_id', 'Store Id:') !!}
-    <p>{!! $product->store_id !!}</p>
+    {!! Form::label('store_id', 'Store Id:', ['class' =>'col-md-2']) !!}
+    <div class="col-md-10">{!! $product->store->name_ro !!}</div>
 </div>
 
 <!-- Views Field -->
 <div class="form-group">
-    {!! Form::label('views', 'Views:') !!}
-    <p>{!! $product->views !!}</p>
+    {!! Form::label('views', 'Views:', ['class' =>'col-md-2']) !!}
+    <div class="col-md-10">{!! $product->views !!}</div>
 </div>
 
 <!-- Created At Field -->
 <div class="form-group">
-    {!! Form::label('created_at', 'Created At:') !!}
-    <p>{!! $product->created_at !!}</p>
+    {!! Form::label('created_at', 'Created At:', ['class' =>'col-md-2']) !!}
+    <div class="col-md-10">{!! $product->created_at !!}</div>
 </div>
 
 <!-- Updated At Field -->
 <div class="form-group">
-    {!! Form::label('updated_at', 'Updated At:') !!}
-    <p>{!! $product->updated_at !!}</p>
+    {!! Form::label('updated_at', 'Updated At:', ['class' =>'col-md-2']) !!}
+    <div class="col-md-10">{!! $product->updated_at !!}</div>
 </div>
 

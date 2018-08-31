@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\CategoryDataTable;
+use App\DataTables\ContactDataTable;
 use App\Http\Requests\CreateCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Repositories\CategoryRepository;
@@ -24,16 +26,13 @@ class CategoryController extends AppBaseController
     /**
      * Display a listing of the Category.
      *
-     * @param Request $request
+     * @param CategoryDataTable $contactDataTable
      * @return Response
      */
-    public function index(Request $request)
+    public function index(CategoryDataTable $contactDataTable)
     {
-        $this->categoryRepository->pushCriteria(new RequestCriteria($request));
-        $categories = $this->categoryRepository->all();
+        return $contactDataTable->render('admin.categories.index');
 
-        return view('admin.categories.index')
-            ->with('categories', $categories);
     }
 
     /**

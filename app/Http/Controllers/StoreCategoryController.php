@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\StoreCategoryDataTable;
+use App\Http\Requests;
 use App\Http\Requests\CreateStoreCategoryRequest;
 use App\Http\Requests\UpdateStoreCategoryRequest;
 use App\Repositories\StoreCategoryRepository;
-use App\Http\Controllers\AppBaseController;
-use Illuminate\Http\Request;
 use Flash;
-use Prettus\Repository\Criteria\RequestCriteria;
+use App\Http\Controllers\AppBaseController;
 use Response;
 
 class StoreCategoryController extends AppBaseController
@@ -24,16 +24,12 @@ class StoreCategoryController extends AppBaseController
     /**
      * Display a listing of the StoreCategory.
      *
-     * @param Request $request
+     * @param StoreCategoryDataTable $storeCategoryDataTable
      * @return Response
      */
-    public function index(Request $request)
+    public function index(StoreCategoryDataTable $storeCategoryDataTable)
     {
-        $this->storeCategoryRepository->pushCriteria(new RequestCriteria($request));
-        $storeCategories = $this->storeCategoryRepository->all();
-
-        return view('admin.store_categories.index')
-            ->with('storeCategories', $storeCategories);
+        return $storeCategoryDataTable->render('admin.store_categories.index');
     }
 
     /**

@@ -31,8 +31,6 @@ class StoreCategory extends Model
 
     public $timestamps = false;
 
-
-
     public $fillable = [
         'category_id',
         'store_id'
@@ -53,7 +51,7 @@ class StoreCategory extends Model
      * @var array
      */
     public static $rules = [
-        
+
     ];
 
     /**

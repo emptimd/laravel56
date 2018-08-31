@@ -1,25 +1,22 @@
-@extends('layouts.app')
+@extends("la.layouts.app")
 
-@section('content')
-    <section class="content-header">
-        <h1 class="pull-left">Stores</h1>
-        <h1 class="pull-right">
-           <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('admin.stores.create') !!}">Add New</a>
-        </h1>
-    </section>
-    <div class="content">
-        <div class="clearfix"></div>
+@section("contentheader_title", "Stores")
+@section("section", "Stores")
+@section("sub_section", "Listing")
+@section("htmlheader_title", "Stores Listing")
 
-        @include('flash::message')
+@section("headerElems")
+    <a class="btn btn-success btn-sm pull-right" href="{!! route('admin.stores.create') !!}">Add Store</a>
+@endsection
 
-        <div class="clearfix"></div>
-        <div class="box box-primary">
-            <div class="box-body">
-                    @include('admin.stores.table')
-            </div>
-        </div>
-        <div class="text-center">
-        
+
+@section('main-content')
+    @include('flash::message')
+
+    <div class="clearfix"></div>
+    <div class="box box-success">
+        <div class="box-body">
+            @include('admin.stores.table')
         </div>
     </div>
 @endsection

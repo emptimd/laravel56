@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\ProductDataTable;
 use App\Http\Requests\CreateProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\ProductPhoto;
@@ -25,16 +26,13 @@ class ProductController extends AppBaseController
     /**
      * Display a listing of the Product.
      *
-     * @param Request $request
+     * @param ProductDataTable $contactDataTable
      * @return Response
      */
-    public function index(Request $request)
+    public function index(ProductDataTable $contactDataTable)
     {
-        $this->productRepository->pushCriteria(new RequestCriteria($request));
-        $products = $this->productRepository->all();
+        return $contactDataTable->render('admin.products.index');
 
-        return view('admin.products.index')
-            ->with('products', $products);
     }
 
     /**

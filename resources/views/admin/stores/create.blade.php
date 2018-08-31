@@ -1,24 +1,31 @@
-@extends('layouts.app')
+@extends("la.layouts.app")
 
-@section('content')
-    <section class="content-header">
-        <h1>
-            Store
-        </h1>
-    </section>
-    <div class="content">
-        @include('adminlte-templates::common.errors')
-        <div class="box box-primary">
+@section("contentheader_title")
+    <a href="{!! url('admin/stores') !!}">Stores</a> :
+@endsection
+@section("contentheader_description", 'Create Store')
+@section("section", "Stores")
+@section("section_url", url('admin/stores'))
+@section("sub_section", "Create")
 
-            <div class="box-body">
-                <div class="row">
+@section("htmlheader_title", "Create Store")
+
+@section("main-content")
+    <div class="box">
+        <div class="box-header">
+
+        </div>
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
                     {!! Form::open(['route' => 'admin.stores.store']) !!}
 
-                        @include('admin.stores.fields')
+                    @include('admin.stores.fields')
 
                     {!! Form::close() !!}
                 </div>
             </div>
         </div>
     </div>
+
 @endsection

@@ -8,7 +8,7 @@ use InfyOm\Generator\Common\BaseRepository;
 /**
  * Class StoreCategoryRepository
  * @package App\Repositories
- * @version August 28, 2018, 3:54 am EEST
+ * @version August 30, 2018, 11:51 pm EEST
  *
  * @method StoreCategory findWithoutFail($id, $columns = ['*'])
  * @method StoreCategory find($id, $columns = ['*'])

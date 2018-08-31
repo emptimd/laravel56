@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\ContactDataTable;
+use App\Http\Requests;
 use App\Http\Requests\CreateContactRequest;
 use App\Http\Requests\UpdateContactRequest;
 use App\Repositories\ContactRepository;
-use App\Http\Controllers\AppBaseController;
-use Illuminate\Http\Request;
 use Flash;
-use Prettus\Repository\Criteria\RequestCriteria;
+use App\Http\Controllers\AppBaseController;
 use Response;
 
 class ContactController extends AppBaseController
@@ -24,18 +24,41 @@ class ContactController extends AppBaseController
     /**
      * Display a listing of the Contact.
      *
-     * @param Request $request
+     * @param ContactDataTable $contactDataTable
      * @return Response
      */
-    public function index(Request $request)
+    public function index(ContactDataTable $contactDataTable)
     {
-        $this->contactRepository->pushCriteria(new RequestCriteria($request));
-        $contacts = $this->contactRepository->all();
-
-        return view('admin.contacts.index')
-            ->with('contacts', $contacts);
+        return $contactDataTable->render('admin.contacts.index');
     }
 
+    /**
+     * Show the form for creating a new Contact.
+     *
+     * @return Response
+     */
+    public function create()
+    {
+        return view('admin.contacts.create');
+    }
+
+    /**
+     * Store a newly created Contact in storage.
+     *
+     * @param CreateContactRequest $request
+     *
+     * @return Response
+     */
+    public function store(CreateContactRequest $request)
+    {
+        $input = $request->all();
+
+        $contact = $this->contactRepository->create($input);
+
+        Flash::success('Contact saved successfully.');
+
+        return redirect(route('admin.contacts.index'));
+    }
 
     /**
      * Display the specified Contact.

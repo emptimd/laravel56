@@ -60,17 +60,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth.admin'], function(){
 
 
     Route::get('contacts', ['as'=> 'admin.contacts.index', 'uses' => 'ContactController@index']);
-//    Route::post('contacts', ['as'=> 'admin.contacts.store', 'uses' => 'ContactController@store']);
-//    Route::get('contacts/create', ['as'=> 'admin.contacts.create', 'uses' => 'ContactController@create']);
-//    Route::put('contacts/{contacts}', ['as'=> 'admin.contacts.update', 'uses' => 'ContactController@update']);
-//    Route::patch('contacts/{contacts}', ['as'=> 'admin.contacts.update', 'uses' => 'ContactController@update']);
+    Route::post('contacts', ['as'=> 'admin.contacts.store', 'uses' => 'ContactController@store']);
+    Route::get('contacts/create', ['as'=> 'admin.contacts.create', 'uses' => 'ContactController@create']);
+    Route::put('contacts/{contacts}', ['as'=> 'admin.contacts.update', 'uses' => 'ContactController@update']);
+    Route::patch('contacts/{contacts}', ['as'=> 'admin.contacts.update', 'uses' => 'ContactController@update']);
     Route::delete('contacts/{contacts}', ['as'=> 'admin.contacts.destroy', 'uses' => 'ContactController@destroy']);
     Route::get('contacts/{contacts}', ['as'=> 'admin.contacts.show', 'uses' => 'ContactController@show']);
-//    Route::get('contacts/{contacts}/edit', ['as'=> 'admin.contacts.edit', 'uses' => 'ContactController@edit']);
+    Route::get('contacts/{contacts}/edit', ['as'=> 'admin.contacts.edit', 'uses' => 'ContactController@edit']);
 
 
 });
-
 
 
 Route::get('artisan', ['as'=> 'admin.artisan.index', 'uses' => 'ArtisanController@index'])->middleware('auth.admin');
