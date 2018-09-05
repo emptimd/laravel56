@@ -15,13 +15,12 @@ use Eloquent as Model;
  * @property string name_ru
  * @property string description_ro
  * @property string description_ru
+ * @property string slug
  * @property string logo
+ * @property string html_ro
+ * @property string html_ru
+ * @property string json_coords
  * @property int $id
- * @property string $name_ro
- * @property string $name_ru
- * @property string $description_ro
- * @property string $description_ru
- * @property string $logo
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $products
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\StoreCategory[] $storeCategories
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Store whereDescriptionRo($value)
@@ -30,6 +29,9 @@ use Eloquent as Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Store whereLogo($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Store whereNameRo($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Store whereNameRu($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Store whereHtmlRo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Store whereHtmlRu($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Store whereSlug($value)
  * @mixin \Eloquent
  */
 class Store extends Model
@@ -44,7 +46,11 @@ class Store extends Model
         'name_ru',
         'description_ro',
         'description_ru',
-        'logo'
+        'logo',
+        'html_ro',
+        'html_ru',
+        'slug',
+        'json_coords'
     ];
 
     /**
@@ -57,7 +63,9 @@ class Store extends Model
         'name_ru' => 'string',
         'description_ro' => 'string',
         'description_ru' => 'string',
-        'logo' => 'string'
+        'logo' => 'string',
+        'slug' => 'string',
+        'json_coords' => 'json'
     ];
 
     /**
@@ -79,10 +87,57 @@ class Store extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\hasOne
+     **/
+    public function product()
+    {
+        return $this->hasOne(\App\Models\Product::class)->orderBy('id', 'desc');
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
     public function storeCategories()
     {
         return $this->hasMany(\App\Models\StoreCategory::class);
+    }
+
+    public function getName()
+    {
+        return $this['name_'.app()->getLocale()];
+    }
+
+    public function getDescription()
+    {
+        return $this['description_'.app()->getLocale()];
+    }
+
+    public function getHtml()
+    {
+        return $this['html_'.app()->getLocale()];
+    }
+
+    /**
+     * Boot the model.
+     *
+     * @return void
+     */
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($product) {
+            \Storage::delete($product->logo);
+        });
+
+        static::updating(function ($product) {
+            $input = \Request::all();
+
+            if(isset($input['logo'])) {
+                \Storage::delete($product->getOriginal('logo'));
+                $product->logo = \Storage::putFile('', \Request::file('logo'));
+            }
+        });
+
     }
 }

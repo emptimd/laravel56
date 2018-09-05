@@ -18,6 +18,18 @@ use Response;
  */
 class AppBaseController extends Controller
 {
+//    public function __construct()
+//    {
+//        $this->middleware(function ($request, $next) {
+//
+//            view()->share('current_locale', substr(app()->getLocale(),0,2));
+//
+//            return $next($request);
+//
+//        });
+//
+//    }
+
     public function sendResponse($result, $message)
     {
         return Response::json(ResponseUtil::makeResponse($message, $result));

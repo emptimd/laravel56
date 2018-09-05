@@ -28,9 +28,16 @@
     <div class="col-md-10">{!! $store->description_ru !!}</div>
 </div>
 
+<!-- Slug Field -->
+<div class="form-group">
+    {!! Form::label('slug', 'Slug:', ['class' =>'col-md-2']) !!}
+    <div class="col-md-10">{!! $store->slug !!}</div>
+</div>
+
 <!-- Logo Field -->
 <div class="form-group">
     {!! Form::label('logo', 'Logo:', ['class' =>'col-md-2']) !!}
-    <div class="col-md-10">{!! $store->logo !!}</div>
+    <div class="uploaded_image"><img src="{{ url('storage/'.$store->logo) }}" alt=""></div>
+
 </div>
 

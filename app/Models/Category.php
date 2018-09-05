@@ -15,11 +15,8 @@ use Eloquent as Model;
  * @property string name_ru
  * @property string description_ro
  * @property string description_ru
+ * @property string slug
  * @property bool $id
- * @property string $name_ro
- * @property string $name_ru
- * @property string $description_ro
- * @property string $description_ru
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $products
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\StoreCategory[] $storeCategories
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereDescriptionRo($value)
@@ -27,6 +24,7 @@ use Eloquent as Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereNameRo($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereNameRu($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereSlug($value)
  * @mixin \Eloquent
  */
 class Category extends Model
@@ -42,7 +40,8 @@ class Category extends Model
         'name_ro',
         'name_ru',
         'description_ro',
-        'description_ru'
+        'description_ru',
+        'slug'
     ];
 
     /**
@@ -55,7 +54,7 @@ class Category extends Model
         'name_ro' => 'string',
         'name_ru' => 'string',
         'description_ro' => 'string',
-        'description_ru' => 'string'
+        'slug' => 'string'
     ];
 
     /**
@@ -64,8 +63,8 @@ class Category extends Model
      * @var array
      */
     public static $rules = [
-        'name_ro' => 'required|max:255|unique:categories',
-        'name_ru' => 'required|max:255|unique:categories',
+        'name_ro' => 'required|max:255|unique:categories,name_ro',
+        'name_ru' => 'required|max:255|unique:categories,name_ru',
     ];
 
     /**
@@ -82,5 +81,10 @@ class Category extends Model
     public function storeCategories()
     {
         return $this->hasMany(\App\Models\StoreCategory::class);
+    }
+
+    public function getName()
+    {
+        return $this['name_'.app()->getLocale()];
     }
 }

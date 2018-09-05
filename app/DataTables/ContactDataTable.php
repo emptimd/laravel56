@@ -7,7 +7,7 @@ use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
 
 class ContactDataTable extends DataTable
-{
+{/**/
     /**
      * Build DataTable class.
      *

@@ -13,14 +13,13 @@
 <!-- Path Ro Field -->
 <div class="form-group">
     {!! Form::label('path_ro', 'Path Ro:', ['class' =>'col-md-2']) !!}
-{{--    <div class="col-md-10">{!! $product->path_ro !!}</div>--}}
     <div class="uploaded_image"><img src="{{ url('storage/'.$product->path_ro) }}" alt=""></div>
 </div>
 
 <!-- Name Ru Field -->
 <div class="form-group">
     {!! Form::label('name_ru', 'Name Ru:', ['class' =>'col-md-2']) !!}
-    <div class="uploaded_image"><img src="{{ url('storage/'.$product->path_ru) }}" alt=""></div>
+    <div class="col-md-10">{!! $product->name_ru !!}</div>
 </div>
 
 <!-- Description Ru Field -->
@@ -32,13 +31,20 @@
 <!-- Path Ru Field -->
 <div class="form-group">
     {!! Form::label('path_ru', 'Path Ru:', ['class' =>'col-md-2']) !!}
-    <div class="col-md-10">{!! $product->path_ru !!}</div>
+    <div class="uploaded_image"><img src="{{ url('storage/'.$product->path_ru) }}" alt=""></div>
+
 </div>
 
 <!-- Until Field -->
 <div class="form-group">
     {!! Form::label('until', 'Until:', ['class' =>'col-md-2']) !!}
     <div class="col-md-10">{!! $product->until !!}</div>
+</div>
+
+<!-- Slug Field -->
+<div class="form-group">
+    {!! Form::label('slug', 'Slug:', ['class' =>'col-md-2']) !!}
+    <div class="col-md-10">{!! $product->slug !!}</div>
 </div>
 
 <!-- Category Id Field -->

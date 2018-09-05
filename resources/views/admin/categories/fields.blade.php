@@ -26,6 +26,13 @@
     {!! $errors->first('description_ru', '<p class="help-block">:message</p>') !!}
 </div>
 
+<!-- Slug Field -->
+<div class="form-group {{ $errors->has('slug') ? 'has-error' : ''}}">
+    {!! Form::label('slug', 'Slug:') !!}
+    {!! Form::text('slug', null, ['class' => 'form-control']) !!}
+    {!! $errors->first('slug', '<p class="help-block">:message</p>') !!}
+</div>
+
 <!-- Submit Field -->
 <div class="form-group">
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}

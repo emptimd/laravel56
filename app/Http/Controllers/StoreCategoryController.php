@@ -6,6 +6,7 @@ use App\DataTables\StoreCategoryDataTable;
 use App\Http\Requests;
 use App\Http\Requests\CreateStoreCategoryRequest;
 use App\Http\Requests\UpdateStoreCategoryRequest;
+use App\Models\StoreCategory;
 use App\Repositories\StoreCategoryRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
@@ -29,6 +30,8 @@ class StoreCategoryController extends AppBaseController
      */
     public function index(StoreCategoryDataTable $storeCategoryDataTable)
     {
+//        $model = StoreCategory::find(1);
+//        dd($model->category->id);
         return $storeCategoryDataTable->render('admin.store_categories.index');
     }
 
@@ -39,7 +42,9 @@ class StoreCategoryController extends AppBaseController
      */
     public function create()
     {
-        return view('admin.store_categories.create');
+        $categories = \DB::table('categories')->pluck('name_ro', 'id');
+        $stores = \DB::table('stores')->pluck('name_ro', 'id');
+        return view('admin.store_categories.create', ['stores' => $stores, 'categories' => $categories]);
     }
 
     /**
@@ -97,7 +102,10 @@ class StoreCategoryController extends AppBaseController
             return redirect(route('admin.storeCategories.index'));
         }
 
-        return view('admin.store_categories.edit')->with('storeCategory', $storeCategory);
+        $categories = \DB::table('categories')->pluck('name_ro', 'id');
+        $stores = \DB::table('stores')->pluck('name_ro', 'id');
+
+        return view('admin.store_categories.edit', ['storeCategory' => $storeCategory, 'stores' => $stores, 'categories' => $categories]);
     }
 
     /**

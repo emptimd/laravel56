@@ -139,8 +139,9 @@
                                     <a href="{{ url(config('laraadmin.adminRoute') . '/users/') .'/'. Auth::user()->id }}" class="btn btn-default btn-flat">Profile</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="{{ url('/logout') }}" class="btn btn-default btn-flat">Sign out</a>
+                                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn btn-default btn-flat">Sign out</a>
                                 </div>
+                                <form id="logout-form" action="{{ url(app()->getLocale().'/logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
                             </li>
                         </ul>
                     </li>

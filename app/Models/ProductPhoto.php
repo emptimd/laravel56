@@ -70,6 +70,11 @@ class ProductPhoto extends Model
         return $this->belongsTo(\App\Models\Product::class);
     }
 
+    public function getPath()
+    {
+        return $this['path_'.app()->getLocale()] ? $this['path_'.app()->getLocale()] : $this['path_ro'];
+    }
+
     /**
      * Boot the model.
      *

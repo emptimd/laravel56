@@ -25,6 +25,10 @@ class UpdateProductRequest extends FormRequest
      */
     public function rules()
     {
-        return Product::$rules;
+        $a = [
+            'slug' => 'required|regex:/^[0-9A-Za-z_-]+$/|unique:products,slug,'.$this->products
+        ];
+
+        return array_merge($a, Product::$rules);
     }
 }

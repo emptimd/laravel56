@@ -18,7 +18,7 @@
         <div class="box-body">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
-                    {!! Form::open(['route' => 'admin.products.store']) !!}
+                    {!! Form::open(['route' => 'admin.products.store', 'files' => true]) !!}
 
                     @include('admin.products.fields')
 

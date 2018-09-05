@@ -17,7 +17,7 @@
         <div class="box-body">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
-                    {!! Form::model($product, ['route' => ['admin.products.update', $product->id], 'method' => 'patch']) !!}
+                    {!! Form::model($product, ['route' => ['admin.products.update', $product->id], 'method' => 'patch', 'files' => true]) !!}
 
                     @include('admin.products.fields')
 

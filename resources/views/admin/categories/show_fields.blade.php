@@ -28,3 +28,9 @@
     <div class="col-md-10">{!! $category->description_ru !!}</div>
 </div>
 
+<!-- Slug Field -->
+<div class="form-group">
+    {!! Form::label('slug', 'Slug:', ['class' =>'col-md-2']) !!}
+    <div class="col-md-10">{!! $category->slug !!}</div>
+</div>
+

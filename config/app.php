@@ -78,9 +78,9 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'ro',
 
-    'locales' => ['en' => 'English', 'ro' => 'Română', 'ru-RU' => 'Russian'],
+    'locales' => [/*'en' => 'English', */'ro' => 'Română', 'ru' => 'Russian'],
 
     'skip_locales' => ['admin', 'translations'],
 
@@ -95,7 +95,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => 'ro',
 
     /*
     |--------------------------------------------------------------------------
@@ -147,7 +147,7 @@ return [
         Illuminate\Redis\RedisServiceProvider::class,
         Illuminate\Auth\Passwords\PasswordResetServiceProvider::class,
         Illuminate\Session\SessionServiceProvider::class,
-        Illuminate\Translation\TranslationServiceProvider::class,
+//        Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
@@ -169,6 +169,11 @@ return [
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
         \InfyOm\Generator\InfyOmGeneratorServiceProvider::class,
         \InfyOm\AdminLTETemplates\AdminLTETemplatesServiceProvider::class,
+        App\Providers\TranslationServiceProvider::class,
+        App\Providers\ComposerServiceProvider::class,
+//        \Creativeorange\Gravatar\GravatarServiceProvider::class,
+
+        /**/
 
     ],
 
@@ -221,6 +226,7 @@ return [
         'Form'      => Collective\Html\FormFacade::class,
         'Html'      => Collective\Html\HtmlFacade::class,
         'Flash'     => Laracasts\Flash\Flash::class,
+//        'Gravatar' => Creativeorange\Gravatar\Facades\Gravatar::class,
 
     ],
 

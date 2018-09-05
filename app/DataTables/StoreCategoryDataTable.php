@@ -18,13 +18,18 @@ class StoreCategoryDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'admin.store_categories.datatables_actions');
+        return $dataTable->addColumn('action', 'admin.store_categories.datatables_actions')
+            ->editColumn('category_id', function($data) {
+                return $data->category->name_ro;
+            })->editColumn('store_id', function($data) {
+                return $data->store->name_ro;
+            });
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Post $model
+     * @param StoreCategory $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function query(StoreCategory $model)

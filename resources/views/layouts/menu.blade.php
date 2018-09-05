@@ -20,3 +20,8 @@
     <a href="{!! route('admin.contacts.index') !!}"><i class="fa fa-edit"></i><span>Contacts</span></a>
 </li>
 
+<li class="{{ Request::is('admin/languages*') ? 'active' : '' }}">
+    <a href="{!! route('admin.languages.index') !!}"><i class="fa fa-edit"></i><span>Languages</span></a>
+</li>
+
+

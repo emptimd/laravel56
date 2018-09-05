@@ -25,6 +25,10 @@ class UpdateStoreRequest extends FormRequest
      */
     public function rules()
     {
-        return Store::$rules;
+        return [
+            'name_ro' => 'required|max:255|unique:stores,name_ro,'.$this->stores,
+            'name_ru' => 'required|max:255|unique:stores,name_ru,'.$this->stores,
+            'slug' => 'required|regex:/^[0-9A-Za-z_-]+$/|unique:stores,slug,'.$this->stores
+        ];
     }
 }

@@ -1,12 +1,16 @@
 <?php
 
-Route::get('/', 'HomeController@index');
+Route::get('/', ['as'=> '/', 'uses' => 'HomeController@index'])->middleware('auth');
 
-Route::get('contact', 'HomeController@contact');
-Route::post('contact', 'HomeController@contact');
+Route::get('contact', ['as'=> 'contact', 'uses' => 'HomeController@contact'])->middleware('auth');
+Route::post('contact', ['as'=> 'contact', 'uses' => 'HomeController@contact'])->middleware('auth');
 
-Route::get('catalog/{id}', 'CatalogController@view');
-Route::get('category/{id}', 'HomeController@category');
+Route::get('catalog/{slug}', ['as'=> 'catalog.view', 'uses' => 'CatalogController@view'])->middleware('auth')->where('slug', '[0-9A-Za-z_-]+');
+Route::get('category/{slug}', ['as'=> 'category', 'uses' => 'HomeController@category'])->middleware('auth')->where('slug', '[0-9A-Za-z_-]+');
+Route::get('store/{slug}', ['as'=> 'store', 'uses' => 'HomeController@store'])->middleware('auth')->where('slug', '[0-9A-Za-z_-]+');
+Route::get('archive/{slug}', ['as'=> 'archive', 'uses' => 'HomeController@archive'])->middleware('auth')->where('slug', '[0-9A-Za-z_-]+');
+
+Route::get('allStores', ['as'=> 'allStores', 'uses' => 'HomeController@allStores'])->middleware('auth');
 
 
 Auth::routes();
@@ -17,6 +21,23 @@ Route::match(['get', 'post'], 'register', function(){
 //->middleware('auth');
 Route::group(['prefix' => 'admin', 'middleware' => 'auth.admin'], function(){
     Route::get('/', 'AdminController@index');
+
+    /*Lagnguage Manager*/
+    Route::get('findTranslations', 'HomeController@findTranslations');
+
+    Route::get('languages', ['as'=> 'admin.languages.index', 'uses' => 'LanguageController@index']);
+    Route::get('languages/scan', ['as'=> 'admin.languages.scan', 'uses' => 'LanguageController@scan']);
+    Route::post('languages', ['as'=> 'admin.languages.store', 'uses' => 'LanguageController@store']);
+    Route::get('languages/create', ['as'=> 'admin.languages.create', 'uses' => 'LanguageController@create']);
+    Route::put('languages/{languages}', ['as'=> 'admin.languages.update', 'uses' => 'LanguageController@update']);
+    Route::patch('languages/{languages}', ['as'=> 'admin.languages.update', 'uses' => 'LanguageController@update']);
+    Route::delete('languages/{languages}', ['as'=> 'admin.languages.destroy', 'uses' => 'LanguageController@destroy']);
+    Route::post('languages/removeOld', ['as'=> 'admin.languages.removeOld', 'uses' => 'LanguageController@removeOld']);
+    Route::post('languages/{languages}/save', ['as'=> 'admin.languages.save', 'uses' => 'LanguageController@save']);
+    Route::get('languages/{languages}', ['as'=> 'admin.languages.show', 'uses' => 'LanguageController@show']);
+    Route::get('languages/{languages}/edit', ['as'=> 'admin.languages.edit', 'uses' => 'LanguageController@edit']);
+    Route::get('languages/{languages}/translate', ['as'=> 'admin.languages.translate', 'uses' => 'LanguageController@translate']);
+
 
     Route::get('categories', ['as'=> 'admin.categories.index', 'uses' => 'CategoryController@index']);
     Route::post('categories', ['as'=> 'admin.categories.store', 'uses' => 'CategoryController@store']);

@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Class Product
@@ -19,26 +21,15 @@ use Eloquent as Model;
  * @property string name_ru
  * @property string description_ru
  * @property string path_ru
+ * @property string slug
  * @property date until
  * @property boolean category_id
  * @property smallInteger store_id
  * @property integer views
  * @property int $id
- * @property string $name_ro
- * @property string $description_ro
- * @property string $path_ro
- * @property string $name_ru
- * @property string $description_ru
- * @property string $path_ru
- * @property \Carbon\Carbon $until
- * @property bool $category_id
- * @property int $store_id
- * @property int $views
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
- * @property-read \App\Models\Category $category
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ProductPhoto[] $productPhotos
- * @property-read \App\Models\Store $store
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereCategoryId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereDescriptionRo($value)
@@ -52,13 +43,15 @@ use Eloquent as Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereUntil($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereViews($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product activeDate()
  * @mixin \Eloquent
  */
 class Product extends Model
 {
 
     public $table = 'products';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -72,6 +65,7 @@ class Product extends Model
         'description_ru',
         'path_ru',
         'until',
+        'slug',
         'category_id',
         'store_id',
         'views'
@@ -90,8 +84,9 @@ class Product extends Model
         'name_ru' => 'string',
         'description_ru' => 'string',
         'path_ru' => 'string',
-        'until' => 'date',
-        'category_id' => 'boolean',
+        'until' => 'date:Y-m-d',
+        'slug' => 'string',
+        'category_id' => 'integer',
         'views' => 'integer'
     ];
 
@@ -105,6 +100,13 @@ class Product extends Model
         'name_ru' => 'required|max:255',
         'until' => 'required',
     ];
+
+
+    public function scopeActiveDate($query)
+    {
+        return $query->whereRaw('until >= CURDATE() ');
+    }
+
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -177,5 +179,30 @@ class Product extends Model
         });
 
     }
+
+    public function getPath()
+    {
+        return $this['path_'.app()->getLocale()] ? $this['path_'.app()->getLocale()] : $this['path_ro'];
+    }
+
+
+    public function getName()
+    {
+        return $this['name_'.app()->getLocale()];
+    }
+
+    public function getDescription()
+    {
+        return $this['description_'.app()->getLocale()];
+    }
+
+    public function isExpired()
+    {
+        $now = Carbon::now();
+        if($now->gt($this->until)) return true;
+
+        return false;
+
+    }/**/
 
 }

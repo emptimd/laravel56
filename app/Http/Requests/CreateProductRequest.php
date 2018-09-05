@@ -27,6 +27,7 @@ class CreateProductRequest extends FormRequest
     {
         $a = [
             'path_ro' => 'required|file|mimes:jpeg,bmp,png,pdf,jpg',
+            'slug' => 'required|regex:/^[0-9A-Za-z_-]+$/|unique:products'
         ];
 
         return array_merge($a, Product::$rules);

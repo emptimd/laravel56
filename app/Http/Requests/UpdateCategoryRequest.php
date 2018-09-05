@@ -25,6 +25,10 @@ class UpdateCategoryRequest extends FormRequest
      */
     public function rules()
     {
-        return Category::$rules;
+        return [
+            'name_ro' => 'required|max:255|unique:categories,name_ro,'.$this->categories,
+            'name_ru' => 'required|max:255|unique:categories,name_ru,'.$this->categories,
+            'slug' => 'required|regex:/^[0-9A-Za-z_-]+$/|unique:categories,slug,'.$this->categories,
+        ];
     }
 }

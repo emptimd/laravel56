@@ -53,6 +53,11 @@ class StoreController extends AppBaseController
     {
         $input = $request->all();
 
+        if($request->file('logo')) {
+            $path = $request->logo->store('');
+            $input['logo'] = $path;
+        }
+
         $store = $this->storeRepository->create($input);
 
         Flash::success('Store saved successfully.');
