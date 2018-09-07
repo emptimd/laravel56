@@ -33,6 +33,9 @@ use Eloquent as Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Store whereHtmlRu($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Store whereSlug($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Category[] $categories
+ * @property-read \App\Models\Product $product
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Store whereJsonCoords($value)
  */
 class Store extends Model
 {
@@ -91,15 +94,18 @@ class Store extends Model
      **/
     public function product()
     {
-        return $this->hasOne(\App\Models\Product::class)->orderBy('id', 'desc');
+        return $this->hasOne(\App\Models\Product::class)->whereRaw('until >= CURDATE() ')->inRandomOrder();
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     **/
-    public function storeCategories()
+
+//    public function storeCategories()
+//    {
+//        return $this->hasMany(\App\Models\StoreCategory::class);
+//    }
+
+    public function categories()
     {
-        return $this->hasMany(\App\Models\StoreCategory::class);
+        return $this->belongsToMany(\App\Models\Category::class, 'store_categories', 'store_id', 'category_id' );
     }
 
     public function getName()

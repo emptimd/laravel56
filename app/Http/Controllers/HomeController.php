@@ -6,7 +6,6 @@ use App\Models\Category;
 use App\Models\Contact;
 use App\Models\Product;
 use App\Models\Store;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -19,18 +18,9 @@ class HomeController extends AppBaseController
      */
     public function index()
     {
-        /*@TODO make footer widgets async*/
-
-        $silder_products = Product::select(['id','name_ro','name_ru','path_ro','path_ru', 'until', 'slug'])->activeDate()->limit(3)->get();
+        $silder_products = Product::select(['id','name_ro','name_ru','path_ro','path_ru', 'until', 'slug'])->activeDate()->where('is_slider', 1)->limit(3)->get();
         $best_products = Product::select(['id','name_ro','name_ru','path_ro','path_ru', 'until', 'slug'])->activeDate()->limit(3)->get();    /*->where('until', '>=', Carbon::now()->format('Y-m-d'))*/
 
-        /*select categoies product+stores*/
-//        $category_products = \DB::select("select c.id,c.name_ro,c.name_ru,p.id as p_id, p.name_ro as p_name_ro, p.name_ru as p_name_ru, p.path_ro, p.path_ru, p.until
-//from categories c inner join products p on p.id = (
-//    select id from products
-//    where products.category_id = c.id
-//    order by created_at desc limit 1
-//)");
 
         $category_products = Category::from('categories as c')->selectRaw('c.id,c.name_ro,c.name_ru,c.slug,p.id as p_id, p.name_ro as p_name_ro, p.name_ru as p_name_ru, p.path_ro, p.path_ru, p.until, p.slug as p_slug')
             ->join('products as p', function($join)
@@ -46,7 +36,10 @@ class HomeController extends AppBaseController
 
         $stores = [];
         foreach($category_products as $category) {
-            $stores[$category->id] = Store::has('product')->limit(4)->get();
+            $id = $category->id;
+            $stores[$category->id] = Store::whereHas('categories', function($query) use ($id) {
+                $query->where('category_id', $id);
+            })->has('product')->limit(4)->get();
         }
 
         return view('frontend.index', ['silder_products' => $silder_products, 'best_products' => $best_products, 'category_products' => $category_products, 'stores' => $stores]);
@@ -105,5 +98,20 @@ class HomeController extends AppBaseController
         $model = Store::find(2);
 
         return view('frontend.allStores', ['model' => $model]);
+    }
+
+    public function subscribe(Request $request)
+    {
+
+        dd($request->all());
+
+        return view('subscribe', []);
+    }
+
+    public function unsubscribe($token)
+    {
+
+
+        return view('unsubscribe', []);
     }
 }

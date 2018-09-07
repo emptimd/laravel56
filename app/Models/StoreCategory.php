@@ -15,10 +15,6 @@ use Eloquent as Model;
  * @property boolean category_id
  * @property smallInteger store_id
  * @property int $id
- * @property bool $category_id
- * @property int $store_id
- * @property-read \App\Models\Category $category
- * @property-read \App\Models\Store $store
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\StoreCategory whereCategoryId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\StoreCategory whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\StoreCategory whereStoreId($value)

@@ -118,6 +118,7 @@
                                 <div class="col-sm-7">
                                     <div class="media_wrapper">
                                         @foreach($stores[$category_product->id] as $store)
+
                                             <div class="media">
                                                 <div class="media-left">
                                                     <a href="{{ route('catalog.view', ['id' => $store->product->slug]) }}"><img class="media-object" src="{{ url('storage/'.$store->logo) }}" alt="Store image" width="80" height="80" style="border-radius: 8px;"></a>
@@ -129,6 +130,7 @@
 
                                                 </div><!--media-body-->
                                             </div><!--media-->
+
                                         @endforeach
                                     </div><!--media_wrapper-->
                                 </div><!--col-sm-5-->

@@ -1352,3 +1352,9 @@ ul {
         padding: 5px 5px 0;
     }
 }
+
+@media (max-width: 767px) {
+    .fb_footer {
+        width: 100%;
+    }
+}

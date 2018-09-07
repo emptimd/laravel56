@@ -4,9 +4,8 @@
     {{--{!! Html::style('css/style-update.css') !!}--}}
 @endpush
 
-@section('title')
-    Archieve
-@endsection
+@section('title'){{ trans('front.archive_title', [ 'title' => $model->getName() ]) }}@endsection
+@section('desc'){{ trans('front.archive_desc', [ 'title' => $model->getName() ]) }}@endsection
 
 @section('content')
     <section id="feature_category_section" class="feature_category_section single-page section_wrapper">
@@ -22,13 +21,15 @@
                                     <div class="item">
                                         <div class="item_wrapper">
                                             <div class="item_img">
-                                                <img class="img-responsive" src="{{ url('storage/'.$product->getPath()) }}" alt="Chania" >
+                                                <a href="{{ route('catalog.view', ['id' => $product->slug]) }}">
+                                                    <img class="img-responsive" src="{{ url('storage/'.$product->getPath()) }}" alt="Chania" >
+                                                </a>
                                             </div>
                                             <div class="item_title_date">
                                                 <div class="news_item_title">
                                                     <h2><a href="{{ route('catalog.view', ['id' => $product->slug]) }}">{{ $product->getName() }}</a></h2>
                                                 </div>
-                                                <div class="item_meta"><a>{{ $product->until }}</a></div>
+                                                <div class="item_meta"><a>{{ $product->until->format('Y-m-d') }}</a></div>
                                             </div><!--item_title_date-->
                                         </div> <!--item_wrapper-->
                                         <div class="item_content"></div>

@@ -7,9 +7,8 @@
     <link href="/css/owl.theme.default.min.css" rel="stylesheet">
 @endpush
 
-@section('title')
-    Single Product
-@endsection
+@section('title'){{ trans('front.catalog_title', [ 'title' => $model->getName() ]) }}@endsection
+@section('desc'){{ trans('front.catalog_desc', [ 'title' => $model->getName() ]) }}@endsection
 
 @section('content')
     {{--<div id="fb-root"></div>--}}
@@ -21,7 +20,7 @@
                         <div class="item feature_news_item owl-theme">
                             @if($model->isExpired())
                                 <h4 class="alert alert-danger text-left">{{ trans('frontend.expired product single') }}
-                                    <a href="{{ route('catalog.view', ['id' => $model->slug]) }}">{{ $model->getName() }}</a>
+                                    <a href="{{ route('store', ['id' => $model->store->slug]) }}">{{ $model->store->getName() }}</a>
                                 </h4>
                             @endif
                                 <div class="owl-carousel">

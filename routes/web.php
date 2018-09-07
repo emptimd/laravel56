@@ -12,6 +12,9 @@ Route::get('archive/{slug}', ['as'=> 'archive', 'uses' => 'HomeController@archiv
 
 Route::get('allStores', ['as'=> 'allStores', 'uses' => 'HomeController@allStores'])->middleware('auth');
 
+Route::post('subscribe', ['as'=> 'subscribe', 'uses' => 'HomeController@subscribe'])->middleware('auth');
+Route::get('unsubscribe/{token}', ['as'=> 'unsubscribe', 'uses' => 'HomeController@unsubscribe'])->middleware('auth');
+
 
 Auth::routes();
 Route::match(['get', 'post'], 'register', function(){
@@ -27,6 +30,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth.admin'], function(){
 
     Route::get('languages', ['as'=> 'admin.languages.index', 'uses' => 'LanguageController@index']);
     Route::get('languages/scan', ['as'=> 'admin.languages.scan', 'uses' => 'LanguageController@scan']);
+    Route::get('languages/clearCache', ['as'=> 'admin.languages.clearCache', 'uses' => 'LanguageController@clearCache']);
     Route::post('languages', ['as'=> 'admin.languages.store', 'uses' => 'LanguageController@store']);
     Route::get('languages/create', ['as'=> 'admin.languages.create', 'uses' => 'LanguageController@create']);
     Route::put('languages/{languages}', ['as'=> 'admin.languages.update', 'uses' => 'LanguageController@update']);
@@ -94,3 +98,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth.admin'], function(){
 
 
 Route::get('artisan', ['as'=> 'admin.artisan.index', 'uses' => 'ArtisanController@index'])->middleware('auth.admin');
+
+
+
+
+
+Route::get('admin/subscribers', ['as'=> 'admin.subscribers.index', 'uses' => 'SubscriberController@index']);
+Route::post('admin/subscribers', ['as'=> 'admin.subscribers.store', 'uses' => 'SubscriberController@store']);
+Route::get('admin/subscribers/create', ['as'=> 'admin.subscribers.create', 'uses' => 'SubscriberController@create']);
+Route::put('admin/subscribers/{subscribers}', ['as'=> 'admin.subscribers.update', 'uses' => 'SubscriberController@update']);
+Route::patch('admin/subscribers/{subscribers}', ['as'=> 'admin.subscribers.update', 'uses' => 'SubscriberController@update']);
+Route::delete('admin/subscribers/{subscribers}', ['as'=> 'admin.subscribers.destroy', 'uses' => 'SubscriberController@destroy']);
+Route::get('admin/subscribers/{subscribers}', ['as'=> 'admin.subscribers.show', 'uses' => 'SubscriberController@show']);
+Route::get('admin/subscribers/{subscribers}/edit', ['as'=> 'admin.subscribers.edit', 'uses' => 'SubscriberController@edit']);

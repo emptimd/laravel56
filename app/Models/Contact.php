@@ -26,10 +26,6 @@ use Eloquent as Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Contact whereSubject($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Contact whereUpdatedAt($value)
  * @mixin \Eloquent
- * @property string $name
- * @property string $email
- * @property string $subject
- * @property string $message
  */
 class Contact extends Model
 {

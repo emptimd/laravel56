@@ -8,6 +8,7 @@
 
 
 @section("headerElems")
+    <a class="btn btn-default btn-sm pull-right" href="{!! route('admin.languages.clearCache') !!}">Clear Cache</a>
     <a class="btn btn-success btn-sm pull-right" href="{!! route('admin.languages.scan') !!}">Scan</a>
     <a class="btn btn-success btn-sm pull-right" href="{!! route('admin.languages.create') !!}">Add language</a>
 @endsection

@@ -12,6 +12,8 @@ use App\Repositories\LanguageRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\File;
 use Response;
 use Symfony\Component\Finder\Finder;
 
@@ -193,6 +195,18 @@ class LanguageController extends AppBaseController
         }
 
         return view('admin.languages.scan', ['languageElements' => $this->_languageElements, 'rLanguageElements' => $this->_removableLanguageSourceIds]);
+    }
+
+    public function clearCache()
+    {
+        $categories = LanguageSource::distinct()->pluck('category');
+
+        foreach($categories as $category) {
+            Cache::forget("__translations.ro.$category");
+            Cache::forget("__translations.ru.$category");
+        }
+
+        return back()->with('status', 'Success');
     }
 
 

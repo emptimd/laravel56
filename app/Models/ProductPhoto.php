@@ -16,10 +16,6 @@ use Eloquent as Model;
  * @property string path_ro
  * @property string path_ru
  * @property int $id
- * @property int $product_id
- * @property string $path_ro
- * @property string $path_ru
- * @property-read \App\Models\Product $product
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ProductPhoto whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ProductPhoto wherePathRo($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ProductPhoto wherePathRu($value)

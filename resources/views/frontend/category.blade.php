@@ -4,9 +4,19 @@
     {{--{!! Html::style('css/style-update.css') !!}--}}
 @endpush
 
-@section('title')
-    contact
-@endsection
+@if($model->id == 3)
+    @section('title'){{ trans('front.category_title_3') }}@endsection
+    @section('desc'){{ trans('front.category_desc_3') }}@endsection
+@elseif($model->id == 4)
+    @section('title'){{ trans('front.category_title_4') }}@endsection
+    @section('desc'){{ trans('front.category_desc_4') }}@endsection
+@elseif($model->id == 5)
+    @section('title'){{ trans('front.category_title_5') }}@endsection
+    @section('desc'){{ trans('front.category_desc_5') }}@endsection
+@elseif($model->id == 6)
+    @section('title'){{ trans('front.category_title_6') }}@endsection
+    @section('desc'){{ trans('front.category_desc_6') }}@endsection
+@endif
 
 @section('content')
     <section id="feature_category_section" class="feature_category_section single-page section_wrapper">

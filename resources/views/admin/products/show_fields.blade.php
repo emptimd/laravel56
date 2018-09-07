@@ -35,6 +35,12 @@
 
 </div>
 
+<!-- Is slider Field -->
+<div class="form-group">
+    {!! Form::label('is_slider', 'Is slider:', ['class' =>'col-md-2']) !!}
+    <div class="col-md-10">{!! $product->is_slider !!}</div>
+</div>
+
 <!-- Until Field -->
 <div class="form-group">
     {!! Form::label('until', 'Until:', ['class' =>'col-md-2']) !!}

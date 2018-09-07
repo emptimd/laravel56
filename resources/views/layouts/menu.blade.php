@@ -25,3 +25,10 @@
 </li>
 
 
+
+
+
+<li class="{{ Request::is('subscribers*') ? 'active' : '' }}">
+    <a href="{!! route('admin.subscribers.index') !!}"><i class="fa fa-edit"></i><span>Subscribers</span></a>
+</li>
+

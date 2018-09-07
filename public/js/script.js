@@ -21,7 +21,7 @@ $(function() {
             margin:30,
             nav:true,
             items: 1,
-            autoplay:true,
+            // autoplay:true,
             autoplayTimeout:5000,
             autoplayHoverPause:true,
             dots: true,

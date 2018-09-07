@@ -45,7 +45,7 @@ $alternative = app()->getLocale() == 'ro'? 'ru' : 'ro';
     @stack('styles'){{----}}
 
     <!--Theme CSS -->
-    <link href="/css/style.css?4" rel="stylesheet">
+    <link href="/css/style.css?5" rel="stylesheet">
 </head>
 <body>
 <div id="main-wrapper">
@@ -132,10 +132,6 @@ $alternative = app()->getLocale() == 'ro'? 'ru' : 'ro';
                                 <ul class="nav navbar-nav ">
                                     <li><a href="{{ route('contact') }}">{{ trans('general.Contact Us') }}</a></li>
                                     <li><a href="{{ route('allStores') }}">{{ trans('general.All Stores') }}</a></li>
-                                    <li><a href="./">Cricket</a></li>
-                                    <li><a href="../navbar/">Rugbi</a></li>
-                                    <li><a href="../navbar/">Hockey</a></li>
-                                    <li><a href="../navbar-static-top/">Boxing</a></li>
                                 </ul>
 
                             </div><!--footer_menu_item-->
@@ -143,16 +139,21 @@ $alternative = app()->getLocale() == 'ro'? 'ru' : 'ro';
                     </div><!--col-xs-6-->
 
 
-
-                        <div style="float:left;margin-top: 16px;" class="fb-page" data-href="https://www.facebook.com/croco.md"
+                    <div class="fb_footer" style="float:left;text-align: center;margin-top: 16px;">
+                        <div class="fb-page"
+                             data-href="https://www.facebook.com/croco.md"
                              data-small-header="false" data-adapt-container-width="false"
                              data-width="300px"
                              data-hide-cover="false" data-show-facepile="true">
-                            <blockquote cite="https://www.facebook.com/croco.md" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/croco.md">CROCO.md - toate reducerile pe un site</a></blockquote>
+                            <blockquote cite="https://www.facebook.com/croco.md" class="fb-xfbml-parse-ignore"><a
+                                        href="https://www.facebook.com/croco.md">CROCO.md - toate reducerile pe un
+                                    site</a></blockquote>
                         </div>
+                        <div class="clearfix"></div>
+                    </div>
 
                         <div class="clearfix visible-xs"></div>
-                        <div class="text_widget footer_widget">
+                        <div class="text_widget footer_widget" style="text-align: center;">
                             <div id="ok_group_widget" style="margin-left: 20px;"></div>
                         </div>
                 </div><!--row-->
@@ -206,7 +207,7 @@ $alternative = app()->getLocale() == 'ro'? 'ru' : 'ro';
 @stack('scripts')
 
 <!-- Theme Script File-->
-<script src="/js/script.js?1"></script>
+<script src="/js/script.js?2"></script>
 
 
 

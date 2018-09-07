@@ -22,8 +22,9 @@ use Illuminate\Database\Eloquent\Builder;
  * @property string description_ru
  * @property string path_ru
  * @property string slug
+ * @property boolean is_slider
  * @property date until
- * @property boolean category_id
+ * @property int category_id
  * @property smallInteger store_id
  * @property integer views
  * @property int $id
@@ -45,6 +46,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereViews($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product activeDate()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereIsSlider()
  * @mixin \Eloquent
  */
 class Product extends Model
@@ -68,7 +70,8 @@ class Product extends Model
         'slug',
         'category_id',
         'store_id',
-        'views'
+        'views',
+        'is_slider'
     ];
 
     /**
@@ -87,7 +90,8 @@ class Product extends Model
         'until' => 'date:Y-m-d',
         'slug' => 'string',
         'category_id' => 'integer',
-        'views' => 'integer'
+        'views' => 'integer',
+        'is_slider' => 'boolean'
     ];
 
     /**
@@ -198,11 +202,13 @@ class Product extends Model
 
     public function isExpired()
     {
-        $now = Carbon::now();
-        if($now->gt($this->until)) return true;
+
+        $date1 =  Carbon::now()->format('Y-m-d');
+        $date2 = $this->until->format('Y-m-d');
+        if($date1 > $date2) return true;
 
         return false;
 
-    }/**/
+    }
 
 }

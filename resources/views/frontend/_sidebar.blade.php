@@ -38,6 +38,14 @@
         </div><!--tab-content-->
     </div><!--tab-->
 
+    <div class="subscribe panel">
+        <form action="{{ route('subscribe') }}" class="subscribe_form" method="post">
+            {{ csrf_field() }}
+            <input type="email" name="email" id="subscribe_email" placeholder="Email..." minlength="3" max="255">
+            <button class="btn btn-success">Submit</button>
+        </form>
+    </div>
+
 
     {{--<div class="ad">--}}
         {{--<img class="img-responsive" src="/img/img-ad.jpg" alt="img" />--}}

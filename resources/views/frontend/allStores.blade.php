@@ -7,9 +7,8 @@
           crossorigin=""/>
 @endpush
 
-@section('title')
-    All Stores
-@endsection
+@section('title'){{ trans('front.all_stores_title') }}@endsection
+@section('desc'){{ trans('front.all_stores_desc') }}@endsection
 
 @section('content')
     <section id="feature_category_section" class="feature_category_section single-page section_wrapper">

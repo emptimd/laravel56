@@ -64,6 +64,13 @@ $date = isset($product) ? $product->until->format('Y-m-d') : null;
     {!! $errors->first('slug', '<p class="help-block">:message</p>') !!}
 </div>
 
+<!-- Is Slider Field -->
+<div class="form-group  {{ $errors->has('is_slider') ? 'has-error' : ''}}">
+    {!! Form::label('is_slider', 'Is slider:') !!} &nbsp &nbsp
+    {!! Form::checkbox('is_slider', null, null, ['class' => 'form-contro1l']) !!}
+    {!! $errors->first('is_slider', '<p class="help-block">:message</p>') !!}
+</div>
+
 
 <!-- Category Id Field -->
 <div class="form-group  {{ $errors->has('category_id') ? 'has-error' : ''}}">

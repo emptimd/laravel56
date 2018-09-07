@@ -4,9 +4,8 @@
     {{--{!! Html::style('css/style-update.css') !!}--}}
 @endpush
 
-@section('title')
-    contact
-@endsection
+@section('title'){{ trans('front.archive_title') }}@endsection
+@section('desc'){{ trans('front.archive_desc') }}@endsection
 
 @section('content')
     <section id="feature_category_section" class="feature_category_section single-page section_wrapper">

@@ -59,6 +59,10 @@ class ProductController extends AppBaseController
     {
         $input = $request->all();
 
+        if(isset($input['is_slider'])) {
+            $input['is_slider'] = (bool) $input['is_slider'];
+        }
+
         if($request->file('path_ro')) {
             $path = $request->path_ro->store('');
             $input['path_ro'] = $path;
@@ -171,6 +175,9 @@ class ProductController extends AppBaseController
         $product = $this->productRepository->findWithoutFail($id);
 
         $input = $request->all();
+        if(isset($input['is_slider'])) {
+            $input['is_slider'] = (bool) $input['is_slider'];
+        }
 
 //        if($request->file('path_ro')) {
 //            $path = $request->path_ro->store('');
