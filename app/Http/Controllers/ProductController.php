@@ -57,22 +57,22 @@ class ProductController extends AppBaseController
      */
     public function store(CreateProductRequest $request)
     {
+//        dd(storage_path('5krhG2VMZYYxVzYsheUjtCherZel8LMA1zDvo0uy.jpeg'));
+//        \Tinify\setKey(env('TINY_KEY'));
+//        $sourceData = $request->file('path_ro');
+//        dd($sourceData);
         $input = $request->all();
 
         if(isset($input['is_slider'])) {
             $input['is_slider'] = (bool) $input['is_slider'];
+        }else {
+            $input['is_slider'] = false;
         }
 
         if($request->file('path_ro')) {
             $path = $request->path_ro->store('');
             $input['path_ro'] = $path;
         }
-
-        if($request->file('path_ru')) {
-            $path = $request->path_ru->store('');
-            $input['path_ru'] = $path;
-        }
-
 
         $product = $this->productRepository->create($input);
 
@@ -81,15 +81,6 @@ class ProductController extends AppBaseController
                 $model = new ProductPhoto();
                 $model->product_id = $product->id;
                 $model->path_ro = $photo->store('');
-                $model->save();
-            }
-        }
-
-        if($request->file('photos_ru')) {
-            foreach($request->file('photos_ru') as $photo) {
-                $model = new ProductPhoto();
-                $model->product_id = $product->id;
-                $model->path_ru = $photo->store('');
                 $model->save();
             }
         }
@@ -177,6 +168,8 @@ class ProductController extends AppBaseController
         $input = $request->all();
         if(isset($input['is_slider'])) {
             $input['is_slider'] = (bool) $input['is_slider'];
+        }else {
+            $input['is_slider'] = false;
         }
 
 //        if($request->file('path_ro')) {

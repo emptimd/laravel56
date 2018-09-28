@@ -1,19 +1,24 @@
 <?php
 
-Route::get('/', ['as'=> '/', 'uses' => 'HomeController@index'])->middleware('auth');
+Route::get('/', ['as'=> '/', 'uses' => 'HomeController@index']);
 
-Route::get('contact', ['as'=> 'contact', 'uses' => 'HomeController@contact'])->middleware('auth');
-Route::post('contact', ['as'=> 'contact', 'uses' => 'HomeController@contact'])->middleware('auth');
+Route::get('contact', ['as'=> 'contact', 'uses' => 'HomeController@contact']);
+Route::post('contact', ['as'=> 'contact', 'uses' => 'HomeController@contact']);
 
-Route::get('catalog/{slug}', ['as'=> 'catalog.view', 'uses' => 'CatalogController@view'])->middleware('auth')->where('slug', '[0-9A-Za-z_-]+');
-Route::get('category/{slug}', ['as'=> 'category', 'uses' => 'HomeController@category'])->middleware('auth')->where('slug', '[0-9A-Za-z_-]+');
-Route::get('store/{slug}', ['as'=> 'store', 'uses' => 'HomeController@store'])->middleware('auth')->where('slug', '[0-9A-Za-z_-]+');
-Route::get('archive/{slug}', ['as'=> 'archive', 'uses' => 'HomeController@archive'])->middleware('auth')->where('slug', '[0-9A-Za-z_-]+');
+Route::get('catalog/{slug}', ['as'=> 'catalog.view', 'uses' => 'CatalogController@view'])->where('slug', '[0-9A-Za-z_-]+');
+Route::get('category/{slug}', ['as'=> 'category', 'uses' => 'HomeController@category'])->where('slug', '[0-9A-Za-z_-]+');
+Route::get('store/{slug}', ['as'=> 'store', 'uses' => 'HomeController@store'])->where('slug', '[0-9A-Za-z_-]+');
+Route::get('archive/{slug}', ['as'=> 'archive', 'uses' => 'HomeController@archive'])->where('slug', '[0-9A-Za-z_-]+');
 
-Route::get('allStores', ['as'=> 'allStores', 'uses' => 'HomeController@allStores'])->middleware('auth');
+Route::get('allStores', ['as'=> 'allStores', 'uses' => 'HomeController@allStores']);
 
-Route::post('subscribe', ['as'=> 'subscribe', 'uses' => 'HomeController@subscribe'])->middleware('auth');
-Route::get('unsubscribe/{token}', ['as'=> 'unsubscribe', 'uses' => 'HomeController@unsubscribe'])->middleware('auth');
+Route::post('subscribe', ['as'=> 'subscribe', 'uses' => 'HomeController@subscribe']);
+Route::get('unsubscribe/{token}', ['as'=> 'unsubscribe', 'uses' => 'HomeController@unsubscribe']);
+
+
+/*Push notifications*/
+Route::post('push/subscribe', ['as'=> 'push_subscribe', 'uses' => 'PushController@subscribe']);
+Route::post('push/unsubscribe', ['as'=> 'push_unsubscribe', 'uses' => 'PushController@unsubscribe']);
 
 
 Auth::routes();
@@ -73,7 +78,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth.admin'], function(){
     Route::get('stores/{stores}', ['as'=> 'admin.stores.show', 'uses' => 'StoreController@show']);
     Route::get('stores/{stores}/edit', ['as'=> 'admin.stores.edit', 'uses' => 'StoreController@edit']);
 
-
     Route::get('storeCategories', ['as'=> 'admin.storeCategories.index', 'uses' => 'StoreCategoryController@index']);
     Route::post('storeCategories', ['as'=> 'admin.storeCategories.store', 'uses' => 'StoreCategoryController@store']);
     Route::get('storeCategories/create', ['as'=> 'admin.storeCategories.create', 'uses' => 'StoreCategoryController@create']);
@@ -93,7 +97,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth.admin'], function(){
     Route::get('contacts/{contacts}', ['as'=> 'admin.contacts.show', 'uses' => 'ContactController@show']);
     Route::get('contacts/{contacts}/edit', ['as'=> 'admin.contacts.edit', 'uses' => 'ContactController@edit']);
 
-
+    Route::get('subscribers', ['as'=> 'admin.subscribers.index', 'uses' => 'SubscriberController@index']);
+    Route::post('subscribers', ['as'=> 'admin.subscribers.store', 'uses' => 'SubscriberController@store']);
+    Route::get('subscribers/create', ['as'=> 'admin.subscribers.create', 'uses' => 'SubscriberController@create']);
+    Route::put('subscribers/{subscribers}', ['as'=> 'admin.subscribers.update', 'uses' => 'SubscriberController@update']);
+    Route::patch('subscribers/{subscribers}', ['as'=> 'admin.subscribers.update', 'uses' => 'SubscriberController@update']);
+    Route::delete('subscribers/{subscribers}', ['as'=> 'admin.subscribers.destroy', 'uses' => 'SubscriberController@destroy']);
+    Route::get('subscribers/{subscribers}', ['as'=> 'admin.subscribers.show', 'uses' => 'SubscriberController@show']);
+    Route::get('subscribers/{subscribers}/edit', ['as'=> 'admin.subscribers.edit', 'uses' => 'SubscriberController@edit']);
 });
 
 
@@ -103,11 +114,4 @@ Route::get('artisan', ['as'=> 'admin.artisan.index', 'uses' => 'ArtisanControlle
 
 
 
-Route::get('admin/subscribers', ['as'=> 'admin.subscribers.index', 'uses' => 'SubscriberController@index']);
-Route::post('admin/subscribers', ['as'=> 'admin.subscribers.store', 'uses' => 'SubscriberController@store']);
-Route::get('admin/subscribers/create', ['as'=> 'admin.subscribers.create', 'uses' => 'SubscriberController@create']);
-Route::put('admin/subscribers/{subscribers}', ['as'=> 'admin.subscribers.update', 'uses' => 'SubscriberController@update']);
-Route::patch('admin/subscribers/{subscribers}', ['as'=> 'admin.subscribers.update', 'uses' => 'SubscriberController@update']);
-Route::delete('admin/subscribers/{subscribers}', ['as'=> 'admin.subscribers.destroy', 'uses' => 'SubscriberController@destroy']);
-Route::get('admin/subscribers/{subscribers}', ['as'=> 'admin.subscribers.show', 'uses' => 'SubscriberController@show']);
-Route::get('admin/subscribers/{subscribers}/edit', ['as'=> 'admin.subscribers.edit', 'uses' => 'SubscriberController@edit']);
+

@@ -6,7 +6,7 @@
 </div>
 
 <!-- Description Ro Field -->
-<div class="form-group  {{ $errors->has('description_ro') ? 'has-error' : ''}}">
+<div class="form-group {{ $errors->has('description_ro') ? 'has-error' : ''}}">
     {!! Form::label('description_ro', 'Description Ro:') !!}
     {!! Form::text('description_ro', null, ['class' => 'form-control', 'maxlength' => 255]) !!}
     {!! $errors->first('description_ro', '<p class="help-block">:message</p>') !!}
@@ -14,7 +14,7 @@
 
 <!-- Path Ro Field -->
 <div class="form-group  {{ $errors->has('path_ro') ? 'has-error' : ''}}">
-    {!! Form::label('path_ro', 'File Ro:') !!}
+    {!! Form::label('path_ro', 'File:') !!}
     <div class="file-loading">
         <input id="file-1" type="file" name="path_ro" class="file" data-msg-placeholder="File Ro...">
     </div>
@@ -36,14 +36,14 @@
 </div>{{----}}
 
 <!-- Path Ru Field -->
-<div class="form-group  {{ $errors->has('path_ru') ? 'has-error' : ''}}">
-    {!! Form::label('path_ru', 'File Ru:') !!}
-    <div class="file-loading">
-        <input id="file-2" type="file" name="path_ru" class="file" data-msg-placeholder="File RU...">
-    </div>
-    {!! $errors->first('path_ru', '<p class="help-block">:message</p>') !!}
+{{--<div class="form-group  {{ $errors->has('path_ru') ? 'has-error' : ''}}">--}}
+    {{--{!! Form::label('path_ru', 'File Ru:') !!}--}}
+    {{--<div class="file-loading">--}}
+        {{--<input id="file-2" type="file" name="path_ru" class="file" data-msg-placeholder="File RU...">--}}
+    {{--</div>--}}
+    {{--{!! $errors->first('path_ru', '<p class="help-block">:message</p>') !!}--}}
 
-</div>
+{{--</div>--}}
 
 <?php
 $date = isset($product) ? $product->until->format('Y-m-d') : null;
@@ -92,19 +92,19 @@ $date = isset($product) ? $product->until->format('Y-m-d') : null;
 
 <!-- Photos Ro Field -->
 <div class="form-group">
-    {!! Form::label('path_ro', 'Photos Ro:') !!}
+    {!! Form::label('path_ro', 'Photos:') !!}
     <div class="file-loading">
-        <input id="photo-1" type="file" name="photos_ro[]" class="file" multiple data-msg-placeholder="Photos Ro...">
+        <input id="photo-1" type="file" name="photos_ro[]" class="file" multiple data-msg-placeholder="Photos...">
     </div>
 </div>
 
 <!-- Photos Ru Field -->
-<div class="form-group">
-    {!! Form::label('path_ru', 'Photos Ru:') !!}
-    <div class="file-loading">
-        <input id="photo-2" type="file" name="photos_ru[]" class="file" multiple data-msg-placeholder="Photos Ru...">
-    </div>
-</div>
+{{--<div class="form-group">--}}
+    {{--{!! Form::label('path_ru', 'Photos Ru:') !!}--}}
+    {{--<div class="file-loading">--}}
+        {{--<input id="photo-2" type="file" name="photos_ru[]" class="file" multiple data-msg-placeholder="Photos Ru...">--}}
+    {{--</div>--}}
+{{--</div>--}}
 
 <!-- Submit Field -->
 <div class="form-group">

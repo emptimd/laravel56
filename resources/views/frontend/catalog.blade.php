@@ -1,72 +1,93 @@
 @extends('layouts.main')
 
-@push('styles')
-    {{--{!! Html::style('css/style-update.css') !!}--}}
-    <!-- Owl carousel -->
-    <link href="/css/owl.carousel.min.css" rel="stylesheet">
-    <link href="/css/owl.theme.default.min.css" rel="stylesheet">
-@endpush
-
 @section('title'){{ trans('front.catalog_title', [ 'title' => $model->getName() ]) }}@endsection
 @section('desc'){{ trans('front.catalog_desc', [ 'title' => $model->getName() ]) }}@endsection
 
+@section('og')
+    <meta property="og:title" content="{{ $model->getName() }}" />
+    <meta property="og:description" content="{{ $model->getDescription() }}" />
+    <meta property="og:url" content="{{ url()->current() }}" />
+    <meta property="og:image" content="{{ url('storage/'.$model->path_ro) }}" />
+@endsection
+
+@if($isMobile)
+    @push('styles')
+        <!-- Owl carousel -->
+        <link href="/css/owl.carousel.min.css" rel="stylesheet">
+        <link href="/css/owl.theme.default.min.css" rel="stylesheet">
+        <style>
+            .owl-carousel .owl-stage {
+                display: flex;
+            }
+            .owl-carousel .owl-item img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                max-width: initial;
+            }
+        </style>
+    @endpush
+@endif
+
 @section('content')
-    {{--<div id="fb-root"></div>--}}
     <section id="feature_category_section" class="feature_category_section single-page section_wrapper">
         <div class="container">
             <div class="row">
                 <div class="col-md-9">
-                    <div class="single_content_layout">
+                    <div class="single_content_layout" style="padding: 0;">
                         <div class="item feature_news_item owl-theme">
                             @if($model->isExpired())
-                                <h4 class="alert alert-danger text-left">{{ trans('frontend.expired product single') }}
+                                <h4 style="margin-bottom: 0;" class="alert alert-danger text-left">{{ trans('frontend.expired product single') }}
                                     <a href="{{ route('store', ['id' => $model->store->slug]) }}">{{ $model->store->getName() }}</a>
                                 </h4>
                             @endif
-                                <div class="owl-carousel">
-                                @foreach($model->productPhotos as $photo)
-                                    <div class="item_img">
-                                        <img class="img-responsive" src="{{ url('storage/'.$photo->getPath()) }}" alt="Image">
-                                    </div><!--item_img-->
-                                @endforeach
-                            </div>
-
-
-                            <div class="item_wrapper">
+                            <div id="catalog_title">
                                 <div class="news_item_title">
-                                    <h2><a>{{ $model->getName() }}</a></h2>
+                                    <h2 style="padding: 0;"><a>{{ $model->getName() }}</a></h2>
                                 </div><!--news_item_title-->
-                                <div class="item_meta" style="font-size: 15px;"><a>{{ trans('frontend.Valabil pînă la')  }} {{ $model->until->format('Y-m-d') }}</a></div>
+                                <div class="item_meta" style="font-size: 15px;"><a>{{ trans('frontend.Valabil pînă la')  }} {{ $model->until->format('d-m-Y') }}</a></div>
 
                                 <hr>
                                 <div class="catalog_description">
                                     {{ $model->getDescription() }}
                                 </div>
+                                <hr style="margin-bottom: 0;">
+                            </div>
+                                @if($model->productPhotos->count())
+                                    @if(!$isMobile)
+                                        <div id="box" style="/*width: 600px; */height: 600px;position: relative;">
+                                            <div id="publication"
+                                                 data-desktop-js="/js/desc_reader.js?1"
+                                                 data-desktop-css="/css/desc_reader.css"
+                                                 data-desktop-retina-css="/css/desc_reader.css"
+                                                 data-tablet-js="/js/desc_reader.js"
+                                                 data-tablet-css="/css/desc_reader.css"
+                                                 data-tablet-retina-css="/css/desc_reader.css"
+                                                 data-mobile-js="/js/desc_reader_mobile.js"
+                                                 data-mobile-css="/css/desc_reader_mobile.css?3"
+                                                 data-mobile-retina-css="/css/desc_reader_mobile.css?3">
+                                            </div>
+                                        </div>
+                                    @else
+                                        <div class="owl-carousel">
+                                            @foreach($model->productPhotos as $photo)
+                                                <img class="img-responsive" src="{{ url('storage/'.$photo->getPath()) }}" alt="Image">
+                                            @endforeach
+                                        </div>
+                                    @endif
+                                @endif
 
-                                <div class="single_social_icon1">
-                                    {{--<a class="icons-sm fb-ic" href="#"><i class="fa fa-facebook"></i><span>Facebook</span></a>--}}
-                                    <!--Twitter-->
-                                    {{--<a class="icons-sm tw-ic" href="#"><i class="fa fa-twitter"></i><span>Twitter</span></a>--}}
-                                    {{--<!--Google +-->--}}
-                                    {{--<a class="icons-sm gplus-ic" href="#"><i class="fa fa-google-plus"></i><span>Google Plus</span></a>--}}
-                                    {{--<!--Linkedin-->--}}
-                                    {{--<a class="icons-sm li-ic" href="#"><i class="fa fa-linkedin"></i><span>Linkedin</span></a>--}}
-                                    {{--<a class="icons-sm gplus-ic" href="#"><i class="fa fa-odnoklassniki"></i><span>Odnoklassniki</span></a>--}}
-
-                                    <span id="ok_shareWidget" style="display: inline-block;position: relative;top: 5px;"></span>
-
-                                    <div class="fb-share-button" data-layout="button_count" data-size="small" data-mobile-iframe="true" style="margin-top: -150px;">
-                                        <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">{{ trans('share.Îmi place') }}</a>
-                                    </div>
-
-                                </div> <!--social_icon1-->
-
-                                <div class="item_content">
+                            <div class="item_wrapper" style="padding: 0 20px 20px 20px;">
+                                <div class="item_content col-xs-8">
                                     {{ $model->store->getDescription() }}
+                                    <br>
+                                    {{ trans('catalog.more_desc', ['title' => $model->store->getName()]) }} <a href="{{ route('store', ['id' => $model->store->slug]) }}">{{ $model->store->getName() }}</a>
 
-                                    <a href="{{ route('store', ['id' => $model->store->slug]) }}"><img src="{{ url('storage/'.$model->store->logo) }}" alt="Logo" width="50" height="50" style="border-radius: 8px;"></a>
                                 </div><!--item_content-->
-
+                                <div class="new_desc_catalog col-xs-4" style="position: absolute;right: 0;bottom: 0;margin: auto 0;top: 0;">
+                                    <a href="{{ route('store', ['id' => $model->store->slug]) }}"><img src="{{ url('storage/'.$model->store->logo) }}" alt="Logo" style="border-radius: 8px;max-height: 50px;max-width: 100%;position: absolute;bottom: 0;top: 0;left: 0;margin: auto;right: 0;"></a>
+                                </div>
+                                <div class="clearfix"></div>
                             </div><!--item_wrapper-->
                         </div><!--feature_news_item-->
 
@@ -79,36 +100,32 @@
 @endsection
 
 @push('scripts')
+    <script src='/js/catalog.js'></script>
+    @if(!$isMobile)
     <script>
-        !function (d, id, did, st, title, description, image) {
-            var js = d.createElement("script");
-            js.src = "https://connect.ok.ru/connect.js";
-            js.onload = js.onreadystatechange = function () {
-                if (!this.readyState || this.readyState == "loaded" || this.readyState == "complete") {
-                    if (!this.executed) {
-                        this.executed = true;
-                        setTimeout(function () {
-                            OK.CONNECT.insertShareWidget(id,did,st, title, description, image);
-                        }, 0);
-                    }
-                }};
-            d.documentElement.appendChild(js);
-        }(document,"ok_shareWidget",document.URL,'{"sz":20,"st":"oval","ck":3,"lang":"{{ app()->getLocale() }}"}',"","","");
+        // CONFING
+        (function() {
+            let spreads = @json($spreads);
+            let translations = @json($translations);
+            var env = Reader.getBrowserEnv(navigator.userAgent);
+            var el = document.getElementById('publication');
+            var data = {
+                "sizes":{"at2400":{"width":2028,"height":2839},"at2000":{"width":1690,"height":2366},"at1600":{"width":1352,"height":1893},"at1200":{"width":1014,"height":1420},"at1000":{"width":845,"height":1183},"at800":{"width":676,"height":946},"at600":{"width":507,"height":710},"at200":{"width":169,"height":237}},
+                "sizing":{"mobile":"fit-content"},
+                "config":{"canonicalUrl":location.href,"publicationTitle":document.title,"customerName":"METRO AG","relativeSize":0.8978443866658069,"locale":"{{ app()->getLocale() }}","websiteUrl":null,"privacyPolicyUrl":"","webshopCheckoutUrl":null,"description":null,"downloadPdfUrl":null,"feedbackReplyable":false,"disableSharing":true,"showPrintButton":false,"enableSearch":false,"passQueryParams":false,"enablePublitasBranding":false,"layout":"booklet","disableAnalytics":true,"transitionEffect":"flip","enableInStockInfo":false,"hotspotsVisibleOnHover":false,"currencySymbol":"€"},
+                "spreads":[],
+                "translations":{"page":"Pagină","spread_overview":{"label":"Prezentare generală pagină"}},
+                "branding":{"bgColor":"#ffffff","bgImage":null,"logo":null,"ctaButtonBackgroundColor":"#2e4585","ctaButtonTextColor":"#f4f7f9","callToActionButtonText":"Inspiră-te din METRO Blog","tooltipColor":"#1853f8","ProductHotspotIcon":null,"ProductHotspotIcon2x":null,"ExternalLinkHotspotIcon":null,"ExternalLinkHotspotIcon2x":null,"PageReferenceHotspotIcon":null,"PageReferenceHotspotIcon2x":null,"VideoHotspotIcon":null,"VideoHotspotIcon2x":null},
+                "analytics":{"customerGaToken":"","gaTags":["21-40"],"cookieConsentText":null}};
+            data.spreads = spreads;
+            data.translations = translations;
+            Reader.Bootstrap.init(el, env, data);
+        }());
     </script>
 
+    @else
+        <!-- Owl carousel -->
+        <script src="/js/owl.carousel.min.js"></script>
+    @endif
 
-
-    {{--fb--}}
-    <script>
-        let fb_lang = '{{ app()->getLocale() == 'ro' ? 'ro_RO' : 'ru_RU' }}';
-        (function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = 'https://connect.facebook.net/'+fb_lang+'/sdk.js#xfbml=1&version=v3.1&appId=104560276983365&autoLogAppEvents=1';
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script>
-
-    <!-- Owl carousel -->
-    <script src="/js/owl.carousel.min.js"></script>
 @endpush

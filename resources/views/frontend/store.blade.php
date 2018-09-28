@@ -23,13 +23,15 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="row">
-                        <div class="col-sm-8">
+                        <div class="col-xs-8">
                             <h3 style="padding-left: 15px;">{{ trans('catalog.Cataloage active') }} {{ $model->getName() }}</h3>
                         </div>
-                        <div class="col-sm-4">
-                            <a class="shop_logo pull-right"><img src="{{ url('storage/'.$model->logo) }}" alt="Imagine magazin" style="max-height: 50px;"></a>
+                        <div class="col-xs-4">
+                            <a class="shop_logo pull-right"><img src="{{ url('storage/'.$model->logo) }}" alt="Imagine magazin" style="max-height: 50px;max-width: 100%;vertical-align: bottom;"></a>
                         </div>
+                    </div><!--row-->
 
+                    <div class="row">
                         @foreach($model->products as $product)
                             <div class="col-sm-3">
                                 <div class="feature_news_item">
@@ -44,7 +46,7 @@
                                                 <div class="news_item_title">
                                                     <h2><a href="{{ route('catalog.view', ['id' => $product->slug]) }}">{{ $product->getName() }}</a></h2>
                                                 </div>
-                                                <div class="item_meta"><a>{{ trans('frontend.Valabil pînă la')  }} {{ $product->until->format('Y-m-d') }}</a></div>
+                                                <div class="item_meta"><a>{{ trans('frontend.Valabil pînă la')  }} {{ $product->until->format('d-m-Y') }}</a></div>
                                             </div><!--item_title_date-->
                                         </div> <!--item_wrapper-->
                                         <div class="item_content"></div>
@@ -54,8 +56,7 @@
                             </div><!--col-md-4-->
 
                         @endforeach
-
-                    </div><!--row-->
+                    </div>
                 </div>
             </div>
             @else
@@ -63,7 +64,7 @@
                     <div class="col-xs-12">
                         <div class="row">
                             <div class="col-xs-8">
-                                <h3 style="padding-left: 15px;">{{ $model->getName() }}</h3>
+                                <h3 style="padding-left: 15px;">{{ trans('catalog.Magazin') }} {{ $model->getName() }}</h3>
                             </div>
                             <div class="col-xs-4">
                                 <a class="shop_logo pull-right"><img src="{{ url('storage/'.$model->logo) }}" alt="Imagine magazin" style="max-height: 50px;"></a>

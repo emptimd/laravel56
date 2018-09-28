@@ -26,6 +26,11 @@ use Eloquent as Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereNameRu($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereSlug($value)
  * @mixin \Eloquent
+ * @property string $name_ro
+ * @property string $name_ru
+ * @property string $description_ro
+ * @property string|null $description_ru
+ * @property string $slug
  */
 class Category extends Model
 {

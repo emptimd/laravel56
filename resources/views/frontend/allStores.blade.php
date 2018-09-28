@@ -7,6 +7,13 @@
           crossorigin=""/>
 @endpush
 
+@section('og')
+    <meta property="og:title" content="{{ trans('front.home_title') }}" />
+    <meta property="og:description" content="Croco este un crocodil foarte activ și curios care caută și publică cele mai noi cataloage și broșuri de la supermarket-uri, magazine de electronice, bricolaj și farmacii din Moldova." />
+    <meta property="og:url" content="http://croco.md/ro" />
+    <meta property="og:image" content="{{ url('/img/sidebar.png') }}" />
+@endsection
+
 @section('title'){{ trans('front.all_stores_title') }}@endsection
 @section('desc'){{ trans('front.all_stores_desc') }}@endsection
 

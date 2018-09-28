@@ -8,7 +8,7 @@ class ArtisanController extends Controller
 {
     public function index()
     {
-//        \Artisan::call('migrate:rollback');
+//        \Artisan::call('storage:link');
         \Artisan::call('migrate');
 //        \Artisan::call('clear-compiled');
 //        \Artisan::call('package:discover');

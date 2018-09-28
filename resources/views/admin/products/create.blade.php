@@ -42,9 +42,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" type="text/javascript"></script>
 
     <script type="text/javascript">
-        $("#file-1, #file-2").fileinput({
+        $("#file-1").fileinput({
             theme: 'fa',
-            allowedFileExtensions: ['jpg', 'png', 'gif', 'pdf'],
+            allowedFileExtensions: ['jpg', 'jpeg', 'png', 'gif', 'pdf'],
             // overwriteInitial: false,
             maxFileSize:2000,
             maxFilesNum: 10,
@@ -55,9 +55,9 @@
             }
         });
 
-        $("#photo-1, #photo-2").fileinput({
+        $("#photo-1").fileinput({
             theme: 'fa',
-            allowedFileExtensions: ['jpg', 'png', 'gif', 'pdf'],
+            allowedFileExtensions: ['jpg', 'jpeg', 'png', 'gif', 'pdf'],
             // overwriteInitial: false,
             maxFileSize:2000,
             maxFilesNum: 10,

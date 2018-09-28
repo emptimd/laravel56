@@ -57,8 +57,6 @@ class Product extends Model
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
-
-
     public $fillable = [
         'name_ro',
         'description_ro',
@@ -148,45 +146,37 @@ class Product extends Model
         static::deleting(function ($product) {
             \Storage::delete($product->path_ro);
             \Storage::delete($product->path_ru);
-
-//            if($product->path_ro && \Storage::exists($product->path_ro)) {
-//                \Storage::delete($product->path_ro);
-//                \Storage::delete($product->path_ru);
-//            }
-
         });
 
         static::updating(function ($product) {
             $input = \Request::all();
-
-//            if($request->file('path_ro')) {
-//                $path = $request->path_ro->store('');
-//                $input['path_ro'] = $path;
-//            }
-//
-//            if($request->file('path_ru')) {
-//                $path = $request->path_ru->store('');
-//                $input['path_ru'] = $path;
-//            }
-
 
             if(isset($input['path_ro'])) {
                 \Storage::delete($product->getOriginal('path_ro'));
                 $product->path_ro = \Storage::putFile('', \Request::file('path_ro'));
 
             }
+        });
 
-            if(isset($input['path_ru'])) {
-                \Storage::delete($product->getOriginal('path_ru'));
-                $product->path_ru = \Storage::putFile('', \Request::file('path_ru'));
+        static::created(function ($product) {
+            try {
+                \Tinify\setKey(env('TINY_KEY'));
+                $source = \Tinify\fromFile(storage_path('app/public/'.$product->path_ro));
+                $source->toFile(storage_path('app/public/'.$product->path_ro));
+            } catch(\Exception $e) {
+                // Validation of API key failed.
             }
         });
+
+//        static::updated(function ($product) {
+//
+//        });
 
     }
 
     public function getPath()
     {
-        return $this['path_'.app()->getLocale()] ? $this['path_'.app()->getLocale()] : $this['path_ro'];
+        return $this['path_ro'];
     }
 
 

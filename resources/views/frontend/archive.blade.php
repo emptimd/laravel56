@@ -7,6 +7,13 @@
 @section('title'){{ trans('front.archive_title', [ 'title' => $model->getName() ]) }}@endsection
 @section('desc'){{ trans('front.archive_desc', [ 'title' => $model->getName() ]) }}@endsection
 
+@section('og')
+    <meta property="og:title" content="{{ trans('front.home_title') }}" />
+    <meta property="og:description" content="Croco este un crocodil foarte activ și curios care caută și publică cele mai noi cataloage și broșuri de la supermarket-uri, magazine de electronice, bricolaj și farmacii din Moldova." />
+    <meta property="og:url" content="http://croco.md/ro" />
+    <meta property="og:image" content="{{ url('/img/sidebar.png') }}" />
+@endsection
+
 @section('content')
     <section id="feature_category_section" class="feature_category_section single-page section_wrapper">
         <div class="container">
@@ -29,7 +36,7 @@
                                                 <div class="news_item_title">
                                                     <h2><a href="{{ route('catalog.view', ['id' => $product->slug]) }}">{{ $product->getName() }}</a></h2>
                                                 </div>
-                                                <div class="item_meta"><a>{{ $product->until->format('Y-m-d') }}</a></div>
+                                                <div class="item_meta"><a>{{ $product->until->format('d-m-Y') }}</a></div>
                                             </div><!--item_title_date-->
                                         </div> <!--item_wrapper-->
                                         <div class="item_content"></div>

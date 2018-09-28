@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\SubscriberDataTable;
-use App\Http\Requests;
 use App\Http\Requests\CreateSubscriberRequest;
 use App\Http\Requests\UpdateSubscriberRequest;
 use App\Repositories\SubscriberRepository;
 use Flash;
-use App\Http\Controllers\AppBaseController;
 use Response;
 
 class SubscriberController extends AppBaseController

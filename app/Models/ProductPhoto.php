@@ -29,8 +29,6 @@ class ProductPhoto extends Model
 
     public $timestamps = false;
 
-
-
     public $fillable = [
         'product_id',
         'path_ro',
@@ -68,7 +66,7 @@ class ProductPhoto extends Model
 
     public function getPath()
     {
-        return $this['path_'.app()->getLocale()] ? $this['path_'.app()->getLocale()] : $this['path_ro'];
+        return $this['path_ro'];
     }
 
     /**
@@ -83,12 +81,16 @@ class ProductPhoto extends Model
         static::deleting(function ($photo) {
             \Storage::delete($photo->path_ro);
             \Storage::delete($photo->path_ru);
+        });
 
-//            if($product->path_ro && \Storage::exists($product->path_ro)) {
-//                \Storage::delete($product->path_ro);
-//                \Storage::delete($product->path_ru);
-//            }
-
+        static::created(function ($product) {
+            try {
+                \Tinify\setKey(env('TINY_KEY'));
+                $source = \Tinify\fromFile(storage_path('app/public/'.$product->path_ro));
+                $source->toFile(storage_path('app/public/'.$product->path_ro));
+            } catch(\Exception $e) {
+                // Validation of API key failed.
+            }
         });
     }
 

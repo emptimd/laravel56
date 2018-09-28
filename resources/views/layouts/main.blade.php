@@ -14,11 +14,8 @@ $alternative = app()->getLocale() == 'ro'? 'ru' : 'ro';
 
     <!-- Jetpack Open Graph Tags -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="@yield('title')" />
-    <meta property="og:description" content="@yield('fb_descriere')" />
-    <meta property="og:url" content="http://ontech.ro/ro" />
+    @yield('og')
     <meta property="og:site_name" content="Croco.md" />
-    <meta property="og:image" content="/img/sidebar.png" />
     <meta property="og:image:width" content="262" />
     <meta property="og:image:height" content="250" />
     <meta property="og:locale" content="ro_RO" />
@@ -33,19 +30,12 @@ $alternative = app()->getLocale() == 'ro'? 'ru' : 'ro';
     <!-- Goole Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Oswald:400,700|Roboto:400,500" rel="stylesheet">
 
-    <!-- Bootstrap -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Font Awesome -->
-    <link href="/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-
-    <!-- Off Canvas Menu -->
-    <link href="/css/offcanvas.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ mix('css/vendor.css') }}">
 
     @stack('styles'){{----}}
 
     <!--Theme CSS -->
-    <link href="/css/style.css?5" rel="stylesheet">
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 </head>
 <body>
 <div id="main-wrapper">
@@ -62,7 +52,7 @@ $alternative = app()->getLocale() == 'ro'? 'ru' : 'ro';
                         </div><!--logo-->
                     </div><!--col-md-3-->
 
-                    <div class="col-md-6">
+                    <div class="col-md-7">
                         <nav class="navbar main-menu navbar-inverse navbar-static-top" role="navigation">
                             <div class="container">
                                 <div class="navbar-header">
@@ -87,18 +77,10 @@ $alternative = app()->getLocale() == 'ro'? 'ru' : 'ro';
                         <!-- .navbar -->
                     </div>
 
-                    <div class="col-md-3 social_icon1-col">
+                    <div class="col-md-2 social_icon1-col">
                         <div class="social_icon1">
-
-                            {{--<a href="{{ url('ro'.substr(request()->path(), 2)) }}" hreflang="ro-RO" lang="ro-RO"><img src="/img/flag_md.gif" title="Română" alt="Română" style="margin-top: -5px;"></a>--}}
-                            {{--<a href="{{ url('ru'.substr(request()->path(), 2)) }}" hreflang="ru-RU" lang="ru-RU"><img src="/img/flag_ru.gif" title="Русский" alt="Русский" style="margin-top: -5px;margin-right: 10px;"></a>--}}
-
                             <a href="{{ url('ro'.substr(request()->path(), 2)) }}" class="flag {{ app()->getLocale() == 'ro' ? 'active': '' }}" hreflang="ro-RO" lang="ro-RO"><img src="/img/Moldova-icon.png" title="Română" alt="Română" width="28" height="28" style="padding: 0;"></a>
                             <a href="{{ url('ru'.substr(request()->path(), 2)) }}" class="flag {{ app()->getLocale() == 'ru' ? 'active': '' }}" hreflang="ru-RU" lang="ru-RU"><img src="/img/Russia-icon.png" title="Русский" alt="Русский" width="28" height="28" style="margin-right: 10px;padding: 0;"></a>
-
-                            {{--<a href="https://www.facebook.com/croco.md/" target="_blank" class="icons-sm fb-ic"><i class="fa fa-facebook"></i></a>--}}
-                            {{--<a href="https://ok.ru/group/59189076033591" target="_blank" class="icons-sm tw-ic"><i class="fa fa-odnoklassniki"></i></a>--}}
-
                             <a href="https://www.facebook.com/croco.md/" target="_blank"><img src="/img/Facebook.png" width="28" height="28" style="padding: 0;"></a>
                             <a href="https://ok.ru/group/59189076033591" target="_blank"><img src="/img/Odnoklassniki.png" width="28" height="28" style="padding: 0;"></a>
                             <!--Google +-->
@@ -111,7 +93,6 @@ $alternative = app()->getLocale() == 'ro'? 'ru' : 'ro';
 
     <!--main content goes here-->
     @yield('content')
-
     <footer class="footer_section section_wrapper section_wrapper" >
         <div class="footer_top_section">
             <div class="container">
@@ -191,26 +172,45 @@ $alternative = app()->getLocale() == 'ro'? 'ru' : 'ro';
 </script>
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="/js/jquery.min.js"></script>
+{{--<script src="/js/jquery.min.js"></script>--}}
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+{{--<script>--}}
+    {{----}}
+{{--</script>--}}
+{{--<script--}}
+        {{--src="https://code.jquery.com/jquery-3.3.1.min.js"--}}
+        {{--integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="--}}
+        {{--crossorigin="anonymous"></script>--}}
 
 <!-- Owl carousel -->
 {{--<script src="/js/owl.carousel.js"></script>--}}
 {{--<script src="/js/owl.carousel.min.js"></script>--}}
 
 
-<!-- Bootstrap -->
-<script src="/js/bootstrap.min.js"></script>
-
-<!-- Off Canvas Menu -->
-<script src="/js/offcanvas.js"></script>
+<script src="{{ mix('js/vendor.js') }}"></script>
 
 @stack('scripts')
 
 <!-- Theme Script File-->
-<script src="/js/script.js?2"></script>
+<script src="{{ mix('js/app.js') }}"></script>
 
 
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-125490937-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
+    gtag('config', 'UA-125490937-1');
+</script>
+
+{{--@if(app()->getLocale() == 'ro')--}}
+    {{--<script async src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b9555a130fa10de"></script>--}}
+{{--@endif--}}
+
+<!-- ManyChat -->
+<script src="//widget.manychat.com/361633277990906.js" async="async"></script>
 
 
 </body>

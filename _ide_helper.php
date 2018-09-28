@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.6.34 on 2018-08-23 00:21:37.
+ * Generated for Laravel 5.6.35 on 2018-09-19 16:33:50.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -5316,6 +5316,31 @@ namespace Illuminate\Support\Facades {
     class Lang {
         
         /**
+         * Get the translation for the given key.
+         *
+         * @param string $key
+         * @param array $replace
+         * @param string $locale
+         * @param bool $fallback
+         * @return string 
+         * @static 
+         */ 
+        public static function get($key, $replace = array(), $locale = null, $fallback = true)
+        {
+            return \App\Translator::get($key, $replace, $locale, $fallback);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function load($namespace, $group, $locale)
+        {
+            return \App\Translator::load($namespace, $group, $locale);
+        }
+        
+        /**
          * Determine if a translation exists for a given locale.
          *
          * @param string $key
@@ -5325,7 +5350,8 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function hasForLocale($key, $locale = null)
         {
-            return \Illuminate\Translation\Translator::hasForLocale($key, $locale);
+            //Method inherited from \Illuminate\Translation\Translator            
+            return \App\Translator::hasForLocale($key, $locale);
         }
         
         /**
@@ -5339,7 +5365,8 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function has($key, $locale = null, $fallback = true)
         {
-            return \Illuminate\Translation\Translator::has($key, $locale, $fallback);
+            //Method inherited from \Illuminate\Translation\Translator            
+            return \App\Translator::has($key, $locale, $fallback);
         }
         
         /**
@@ -5353,22 +5380,8 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function trans($key, $replace = array(), $locale = null)
         {
-            return \Illuminate\Translation\Translator::trans($key, $replace, $locale);
-        }
-        
-        /**
-         * Get the translation for the given key.
-         *
-         * @param string $key
-         * @param array $replace
-         * @param string|null $locale
-         * @param bool $fallback
-         * @return string|array|null 
-         * @static 
-         */ 
-        public static function get($key, $replace = array(), $locale = null, $fallback = true)
-        {
-            return \Illuminate\Translation\Translator::get($key, $replace, $locale, $fallback);
+            //Method inherited from \Illuminate\Translation\Translator            
+            return \App\Translator::trans($key, $replace, $locale);
         }
         
         /**
@@ -5382,7 +5395,8 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function getFromJson($key, $replace = array(), $locale = null)
         {
-            return \Illuminate\Translation\Translator::getFromJson($key, $replace, $locale);
+            //Method inherited from \Illuminate\Translation\Translator            
+            return \App\Translator::getFromJson($key, $replace, $locale);
         }
         
         /**
@@ -5397,7 +5411,8 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function transChoice($key, $number, $replace = array(), $locale = null)
         {
-            return \Illuminate\Translation\Translator::transChoice($key, $number, $replace, $locale);
+            //Method inherited from \Illuminate\Translation\Translator            
+            return \App\Translator::transChoice($key, $number, $replace, $locale);
         }
         
         /**
@@ -5412,7 +5427,8 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function choice($key, $number, $replace = array(), $locale = null)
         {
-            return \Illuminate\Translation\Translator::choice($key, $number, $replace, $locale);
+            //Method inherited from \Illuminate\Translation\Translator            
+            return \App\Translator::choice($key, $number, $replace, $locale);
         }
         
         /**
@@ -5426,21 +5442,8 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function addLines($lines, $locale, $namespace = '*')
         {
-            \Illuminate\Translation\Translator::addLines($lines, $locale, $namespace);
-        }
-        
-        /**
-         * Load the specified language group.
-         *
-         * @param string $namespace
-         * @param string $group
-         * @param string $locale
-         * @return void 
-         * @static 
-         */ 
-        public static function load($namespace, $group, $locale)
-        {
-            \Illuminate\Translation\Translator::load($namespace, $group, $locale);
+            //Method inherited from \Illuminate\Translation\Translator            
+            \App\Translator::addLines($lines, $locale, $namespace);
         }
         
         /**
@@ -5453,7 +5456,8 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function addNamespace($namespace, $hint)
         {
-            \Illuminate\Translation\Translator::addNamespace($namespace, $hint);
+            //Method inherited from \Illuminate\Translation\Translator            
+            \App\Translator::addNamespace($namespace, $hint);
         }
         
         /**
@@ -5465,7 +5469,8 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function addJsonPath($path)
         {
-            \Illuminate\Translation\Translator::addJsonPath($path);
+            //Method inherited from \Illuminate\Translation\Translator            
+            \App\Translator::addJsonPath($path);
         }
         
         /**
@@ -5477,7 +5482,8 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function parseKey($key)
         {
-            return \Illuminate\Translation\Translator::parseKey($key);
+            //Method inherited from \Illuminate\Translation\Translator            
+            return \App\Translator::parseKey($key);
         }
         
         /**
@@ -5488,7 +5494,8 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function getSelector()
         {
-            return \Illuminate\Translation\Translator::getSelector();
+            //Method inherited from \Illuminate\Translation\Translator            
+            return \App\Translator::getSelector();
         }
         
         /**
@@ -5500,7 +5507,8 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function setSelector($selector)
         {
-            \Illuminate\Translation\Translator::setSelector($selector);
+            //Method inherited from \Illuminate\Translation\Translator            
+            \App\Translator::setSelector($selector);
         }
         
         /**
@@ -5511,7 +5519,8 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function getLoader()
         {
-            return \Illuminate\Translation\Translator::getLoader();
+            //Method inherited from \Illuminate\Translation\Translator            
+            return \App\Translator::getLoader();
         }
         
         /**
@@ -5522,7 +5531,8 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function locale()
         {
-            return \Illuminate\Translation\Translator::locale();
+            //Method inherited from \Illuminate\Translation\Translator            
+            return \App\Translator::locale();
         }
         
         /**
@@ -5533,7 +5543,8 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function getLocale()
         {
-            return \Illuminate\Translation\Translator::getLocale();
+            //Method inherited from \Illuminate\Translation\Translator            
+            return \App\Translator::getLocale();
         }
         
         /**
@@ -5545,7 +5556,8 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function setLocale($locale)
         {
-            \Illuminate\Translation\Translator::setLocale($locale);
+            //Method inherited from \Illuminate\Translation\Translator            
+            \App\Translator::setLocale($locale);
         }
         
         /**
@@ -5556,7 +5568,8 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function getFallback()
         {
-            return \Illuminate\Translation\Translator::getFallback();
+            //Method inherited from \Illuminate\Translation\Translator            
+            return \App\Translator::getFallback();
         }
         
         /**
@@ -5568,7 +5581,8 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function setFallback($fallback)
         {
-            \Illuminate\Translation\Translator::setFallback($fallback);
+            //Method inherited from \Illuminate\Translation\Translator            
+            \App\Translator::setFallback($fallback);
         }
         
         /**
@@ -5580,7 +5594,8 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function setLoaded($loaded)
         {
-            \Illuminate\Translation\Translator::setLoaded($loaded);
+            //Method inherited from \Illuminate\Translation\Translator            
+            \App\Translator::setLoaded($loaded);
         }
         
         /**
@@ -5594,7 +5609,7 @@ namespace Illuminate\Support\Facades {
         public static function setParsedKey($key, $parsed)
         {
             //Method inherited from \Illuminate\Support\NamespacedItemResolver            
-            \Illuminate\Translation\Translator::setParsedKey($key, $parsed);
+            \App\Translator::setParsedKey($key, $parsed);
         }
         
         /**
@@ -5607,7 +5622,8 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function macro($name, $macro)
         {
-            \Illuminate\Translation\Translator::macro($name, $macro);
+            //Method inherited from \Illuminate\Translation\Translator            
+            \App\Translator::macro($name, $macro);
         }
         
         /**
@@ -5620,7 +5636,8 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function mixin($mixin)
         {
-            \Illuminate\Translation\Translator::mixin($mixin);
+            //Method inherited from \Illuminate\Translation\Translator            
+            \App\Translator::mixin($mixin);
         }
         
         /**
@@ -5632,7 +5649,8 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function hasMacro($name)
         {
-            return \Illuminate\Translation\Translator::hasMacro($name);
+            //Method inherited from \Illuminate\Translation\Translator            
+            return \App\Translator::hasMacro($name);
         }
          
     }
@@ -14256,6 +14274,910 @@ namespace Barryvdh\Debugbar {
  
 }
 
+namespace Creativeorange\Gravatar\Facades { 
+
+    class Gravatar {
+        
+        /**
+         * Override the default image fallback set in the config.
+         * 
+         * Can either be a public URL to an image or a valid themed image.
+         * For more info, visit http://en.gravatar.com/site/implement/images/#default-image
+         *
+         * @param string $fallback
+         * @return $this 
+         * @static 
+         */ 
+        public static function fallback($fallback)
+        {
+            return \Creativeorange\Gravatar\Gravatar::fallback($fallback);
+        }
+        
+        /**
+         * Check if Gravatar has an avatar for the given email address
+         *
+         * @param $email
+         * @return bool 
+         * @throws InvalidEmailException
+         * @static 
+         */ 
+        public static function exists($email)
+        {
+            return \Creativeorange\Gravatar\Gravatar::exists($email);
+        }
+        
+        /**
+         * Get the gravatar url
+         *
+         * @param $email
+         * @param string $configGroup
+         * @return string 
+         * @throws InvalidEmailException
+         * @static 
+         */ 
+        public static function get($email, $configGroup = 'default')
+        {
+            return \Creativeorange\Gravatar\Gravatar::get($email, $configGroup);
+        }
+         
+    }
+ 
+}
+
+namespace Jenssegers\Agent\Facades { 
+
+    class Agent {
+        
+        /**
+         * Get all detection rules. These rules include the additional
+         * platforms and browsers.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getDetectionRulesExtended()
+        {
+            return \Jenssegers\Agent\Agent::getDetectionRulesExtended();
+        }
+        
+        /**
+         * 
+         *
+         * @inheritdoc 
+         * @static 
+         */ 
+        public static function getRules()
+        {
+            return \Jenssegers\Agent\Agent::getRules();
+        }
+        
+        /**
+         * 
+         *
+         * @return \Jenssegers\Agent\CrawlerDetect 
+         * @static 
+         */ 
+        public static function getCrawlerDetect()
+        {
+            return \Jenssegers\Agent\Agent::getCrawlerDetect();
+        }
+        
+        /**
+         * Get accept languages.
+         *
+         * @param string $acceptLanguage
+         * @return array 
+         * @static 
+         */ 
+        public static function languages($acceptLanguage = null)
+        {
+            return \Jenssegers\Agent\Agent::languages($acceptLanguage);
+        }
+        
+        /**
+         * Get the browser name.
+         *
+         * @param null $userAgent
+         * @return string 
+         * @static 
+         */ 
+        public static function browser($userAgent = null)
+        {
+            return \Jenssegers\Agent\Agent::browser($userAgent);
+        }
+        
+        /**
+         * Get the platform name.
+         *
+         * @param string $userAgent
+         * @return string 
+         * @static 
+         */ 
+        public static function platform($userAgent = null)
+        {
+            return \Jenssegers\Agent\Agent::platform($userAgent);
+        }
+        
+        /**
+         * Get the device name.
+         *
+         * @param string $userAgent
+         * @return string 
+         * @static 
+         */ 
+        public static function device($userAgent = null)
+        {
+            return \Jenssegers\Agent\Agent::device($userAgent);
+        }
+        
+        /**
+         * Check if the device is a desktop computer.
+         *
+         * @param string $userAgent deprecated
+         * @param array $httpHeaders deprecated
+         * @return bool 
+         * @static 
+         */ 
+        public static function isDesktop($userAgent = null, $httpHeaders = null)
+        {
+            return \Jenssegers\Agent\Agent::isDesktop($userAgent, $httpHeaders);
+        }
+        
+        /**
+         * Check if the device is a mobile phone.
+         *
+         * @param string $userAgent deprecated
+         * @param array $httpHeaders deprecated
+         * @return bool 
+         * @static 
+         */ 
+        public static function isPhone($userAgent = null, $httpHeaders = null)
+        {
+            return \Jenssegers\Agent\Agent::isPhone($userAgent, $httpHeaders);
+        }
+        
+        /**
+         * Get the robot name.
+         *
+         * @param string $userAgent
+         * @return string|bool 
+         * @static 
+         */ 
+        public static function robot($userAgent = null)
+        {
+            return \Jenssegers\Agent\Agent::robot($userAgent);
+        }
+        
+        /**
+         * Check if device is a robot.
+         *
+         * @param string $userAgent
+         * @return bool 
+         * @static 
+         */ 
+        public static function isRobot($userAgent = null)
+        {
+            return \Jenssegers\Agent\Agent::isRobot($userAgent);
+        }
+        
+        /**
+         * 
+         *
+         * @inheritdoc 
+         * @static 
+         */ 
+        public static function version($propertyName, $type = 'text')
+        {
+            return \Jenssegers\Agent\Agent::version($propertyName, $type);
+        }
+        
+        /**
+         * Get the current script version.
+         * 
+         * This is useful for the demo.php file,
+         * so people can check on what version they are testing
+         * for mobile devices.
+         *
+         * @return string The version number in semantic version format.
+         * @static 
+         */ 
+        public static function getScriptVersion()
+        {
+            //Method inherited from \Mobile_Detect            
+            return \Jenssegers\Agent\Agent::getScriptVersion();
+        }
+        
+        /**
+         * Set the HTTP Headers. Must be PHP-flavored. This method will reset existing headers.
+         *
+         * @param array $httpHeaders The headers to set. If null, then using PHP's _SERVER to extract
+         *                           the headers. The default null is left for backwards compatibility.
+         * @static 
+         */ 
+        public static function setHttpHeaders($httpHeaders = null)
+        {
+            //Method inherited from \Mobile_Detect            
+            return \Jenssegers\Agent\Agent::setHttpHeaders($httpHeaders);
+        }
+        
+        /**
+         * Retrieves the HTTP headers.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getHttpHeaders()
+        {
+            //Method inherited from \Mobile_Detect            
+            return \Jenssegers\Agent\Agent::getHttpHeaders();
+        }
+        
+        /**
+         * Retrieves a particular header. If it doesn't exist, no exception/error is caused.
+         * 
+         * Simply null is returned.
+         *
+         * @param string $header The name of the header to retrieve. Can be HTTP compliant such as
+         *                       "User-Agent" or "X-Device-User-Agent" or can be php-esque with the
+         *                       all-caps, HTTP_ prefixed, underscore seperated awesomeness.
+         * @return string|null The value of the header.
+         * @static 
+         */ 
+        public static function getHttpHeader($header)
+        {
+            //Method inherited from \Mobile_Detect            
+            return \Jenssegers\Agent\Agent::getHttpHeader($header);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getMobileHeaders()
+        {
+            //Method inherited from \Mobile_Detect            
+            return \Jenssegers\Agent\Agent::getMobileHeaders();
+        }
+        
+        /**
+         * Get all possible HTTP headers that
+         * can contain the User-Agent string.
+         *
+         * @return array List of HTTP headers.
+         * @static 
+         */ 
+        public static function getUaHttpHeaders()
+        {
+            //Method inherited from \Mobile_Detect            
+            return \Jenssegers\Agent\Agent::getUaHttpHeaders();
+        }
+        
+        /**
+         * Set CloudFront headers
+         * http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/header-caching.html#header-caching-web-device
+         *
+         * @param array $cfHeaders List of HTTP headers
+         * @return boolean If there were CloudFront headers to be set
+         * @static 
+         */ 
+        public static function setCfHeaders($cfHeaders = null)
+        {
+            //Method inherited from \Mobile_Detect            
+            return \Jenssegers\Agent\Agent::setCfHeaders($cfHeaders);
+        }
+        
+        /**
+         * Retrieves the cloudfront headers.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getCfHeaders()
+        {
+            //Method inherited from \Mobile_Detect            
+            return \Jenssegers\Agent\Agent::getCfHeaders();
+        }
+        
+        /**
+         * Set the User-Agent to be used.
+         *
+         * @param string $userAgent The user agent string to set.
+         * @return string|null 
+         * @static 
+         */ 
+        public static function setUserAgent($userAgent = null)
+        {
+            //Method inherited from \Mobile_Detect            
+            return \Jenssegers\Agent\Agent::setUserAgent($userAgent);
+        }
+        
+        /**
+         * Retrieve the User-Agent.
+         *
+         * @return string|null The user agent if it's set.
+         * @static 
+         */ 
+        public static function getUserAgent()
+        {
+            //Method inherited from \Mobile_Detect            
+            return \Jenssegers\Agent\Agent::getUserAgent();
+        }
+        
+        /**
+         * Set the detection type. Must be one of self::DETECTION_TYPE_MOBILE or
+         * self::DETECTION_TYPE_EXTENDED. Otherwise, nothing is set.
+         *
+         * @deprecated since version 2.6.9
+         * @param string $type The type. Must be a self::DETECTION_TYPE_* constant. The default
+         *                     parameter is null which will default to self::DETECTION_TYPE_MOBILE.
+         * @static 
+         */ 
+        public static function setDetectionType($type = null)
+        {
+            //Method inherited from \Mobile_Detect            
+            return \Jenssegers\Agent\Agent::setDetectionType($type);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getMatchingRegex()
+        {
+            //Method inherited from \Mobile_Detect            
+            return \Jenssegers\Agent\Agent::getMatchingRegex();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getMatchesArray()
+        {
+            //Method inherited from \Mobile_Detect            
+            return \Jenssegers\Agent\Agent::getMatchesArray();
+        }
+        
+        /**
+         * Retrieve the list of known phone devices.
+         *
+         * @return array List of phone devices.
+         * @static 
+         */ 
+        public static function getPhoneDevices()
+        {
+            //Method inherited from \Mobile_Detect            
+            return \Jenssegers\Agent\Agent::getPhoneDevices();
+        }
+        
+        /**
+         * Retrieve the list of known tablet devices.
+         *
+         * @return array List of tablet devices.
+         * @static 
+         */ 
+        public static function getTabletDevices()
+        {
+            //Method inherited from \Mobile_Detect            
+            return \Jenssegers\Agent\Agent::getTabletDevices();
+        }
+        
+        /**
+         * Alias for getBrowsers() method.
+         *
+         * @return array List of user agents.
+         * @static 
+         */ 
+        public static function getUserAgents()
+        {
+            //Method inherited from \Mobile_Detect            
+            return \Jenssegers\Agent\Agent::getUserAgents();
+        }
+        
+        /**
+         * Retrieve the list of known browsers. Specifically, the user agents.
+         *
+         * @return array List of browsers / user agents.
+         * @static 
+         */ 
+        public static function getBrowsers()
+        {
+            //Method inherited from \Mobile_Detect            
+            return \Jenssegers\Agent\Agent::getBrowsers();
+        }
+        
+        /**
+         * Retrieve the list of known utilities.
+         *
+         * @return array List of utilities.
+         * @static 
+         */ 
+        public static function getUtilities()
+        {
+            //Method inherited from \Mobile_Detect            
+            return \Jenssegers\Agent\Agent::getUtilities();
+        }
+        
+        /**
+         * Method gets the mobile detection rules. This method is used for the magic methods $detect->is*().
+         *
+         * @deprecated since version 2.6.9
+         * @return array All the rules (but not extended).
+         * @static 
+         */ 
+        public static function getMobileDetectionRules()
+        {
+            //Method inherited from \Mobile_Detect            
+            return \Jenssegers\Agent\Agent::getMobileDetectionRules();
+        }
+        
+        /**
+         * Method gets the mobile detection rules + utilities.
+         * 
+         * The reason this is separate is because utilities rules
+         * don't necessary imply mobile. This method is used inside
+         * the new $detect->is('stuff') method.
+         *
+         * @deprecated since version 2.6.9
+         * @return array All the rules + extended.
+         * @static 
+         */ 
+        public static function getMobileDetectionRulesExtended()
+        {
+            //Method inherited from \Mobile_Detect            
+            return \Jenssegers\Agent\Agent::getMobileDetectionRulesExtended();
+        }
+        
+        /**
+         * Retrieve the list of mobile operating systems.
+         *
+         * @return array The list of mobile operating systems.
+         * @static 
+         */ 
+        public static function getOperatingSystems()
+        {
+            //Method inherited from \Mobile_Detect            
+            return \Jenssegers\Agent\Agent::getOperatingSystems();
+        }
+        
+        /**
+         * Check the HTTP headers for signs of mobile.
+         * 
+         * This is the fastest mobile check possible; it's used
+         * inside isMobile() method.
+         *
+         * @return bool 
+         * @static 
+         */ 
+        public static function checkHttpHeadersForMobile()
+        {
+            //Method inherited from \Mobile_Detect            
+            return \Jenssegers\Agent\Agent::checkHttpHeadersForMobile();
+        }
+        
+        /**
+         * Check if the device is mobile.
+         * 
+         * Returns true if any type of mobile device detected, including special ones
+         *
+         * @param null $userAgent deprecated
+         * @param null $httpHeaders deprecated
+         * @return bool 
+         * @static 
+         */ 
+        public static function isMobile($userAgent = null, $httpHeaders = null)
+        {
+            //Method inherited from \Mobile_Detect            
+            return \Jenssegers\Agent\Agent::isMobile($userAgent, $httpHeaders);
+        }
+        
+        /**
+         * Check if the device is a tablet.
+         * 
+         * Return true if any type of tablet device is detected.
+         *
+         * @param string $userAgent deprecated
+         * @param array $httpHeaders deprecated
+         * @return bool 
+         * @static 
+         */ 
+        public static function isTablet($userAgent = null, $httpHeaders = null)
+        {
+            //Method inherited from \Mobile_Detect            
+            return \Jenssegers\Agent\Agent::isTablet($userAgent, $httpHeaders);
+        }
+        
+        /**
+         * This method checks for a certain property in the
+         * userAgent.
+         *
+         * @todo : The httpHeaders part is not yet used.
+         * @param string $key
+         * @param string $userAgent deprecated
+         * @param string $httpHeaders deprecated
+         * @return bool|int|null 
+         * @static 
+         */ 
+        public static function is($key, $userAgent = null, $httpHeaders = null)
+        {
+            //Method inherited from \Mobile_Detect            
+            return \Jenssegers\Agent\Agent::is($key, $userAgent, $httpHeaders);
+        }
+        
+        /**
+         * Some detection rules are relative (not standard),
+         * because of the diversity of devices, vendors and
+         * their conventions in representing the User-Agent or
+         * the HTTP headers.
+         * 
+         * This method will be used to check custom regexes against
+         * the User-Agent string.
+         *
+         * @param $regex
+         * @param string $userAgent
+         * @return bool 
+         * @todo : search in the HTTP headers too.
+         * @static 
+         */ 
+        public static function match($regex, $userAgent = null)
+        {
+            //Method inherited from \Mobile_Detect            
+            return \Jenssegers\Agent\Agent::match($regex, $userAgent);
+        }
+        
+        /**
+         * Get the properties array.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getProperties()
+        {
+            //Method inherited from \Mobile_Detect            
+            return \Jenssegers\Agent\Agent::getProperties();
+        }
+        
+        /**
+         * Prepare the version number.
+         *
+         * @todo Remove the error supression from str_replace() call.
+         * @param string $ver The string version, like "2.6.21.2152";
+         * @return float 
+         * @static 
+         */ 
+        public static function prepareVersionNo($ver)
+        {
+            //Method inherited from \Mobile_Detect            
+            return \Jenssegers\Agent\Agent::prepareVersionNo($ver);
+        }
+        
+        /**
+         * Retrieve the mobile grading, using self::MOBILE_GRADE_* constants.
+         *
+         * @return string One of the self::MOBILE_GRADE_* constants.
+         * @static 
+         */ 
+        public static function mobileGrade()
+        {
+            //Method inherited from \Mobile_Detect            
+            return \Jenssegers\Agent\Agent::mobileGrade();
+        }
+         
+    }
+ 
+}
+
+namespace Yajra\DataTables\Facades { 
+
+    class DataTables {
+        
+        /**
+         * Make a DataTable instance from source.
+         * 
+         * Alias of make for backward compatibility.
+         *
+         * @param mixed $source
+         * @return mixed 
+         * @throws \Exception
+         * @static 
+         */ 
+        public static function of($source)
+        {
+            return \Yajra\DataTables\DataTables::of($source);
+        }
+        
+        /**
+         * Make a DataTable instance from source.
+         *
+         * @param mixed $source
+         * @return mixed 
+         * @throws \Exception
+         * @static 
+         */ 
+        public static function make($source)
+        {
+            return \Yajra\DataTables\DataTables::make($source);
+        }
+        
+        /**
+         * Get request object.
+         *
+         * @return \Yajra\DataTables\Utilities\Request 
+         * @static 
+         */ 
+        public static function getRequest()
+        {
+            return \Yajra\DataTables\DataTables::getRequest();
+        }
+        
+        /**
+         * Get config instance.
+         *
+         * @return \Yajra\DataTables\Utilities\Config 
+         * @static 
+         */ 
+        public static function getConfig()
+        {
+            return \Yajra\DataTables\DataTables::getConfig();
+        }
+        
+        /**
+         * 
+         *
+         * @deprecated Please use query() instead, this method will be removed in a next version.
+         * @param $builder
+         * @return \Yajra\DataTables\QueryDataTable 
+         * @static 
+         */ 
+        public static function queryBuilder($builder)
+        {
+            return \Yajra\DataTables\DataTables::queryBuilder($builder);
+        }
+        
+        /**
+         * DataTables using Query.
+         *
+         * @param \Illuminate\Database\Query\Builder|mixed $builder
+         * @return \Yajra\DataTables\DataTableAbstract|\Yajra\DataTables\QueryDataTable 
+         * @static 
+         */ 
+        public static function query($builder)
+        {
+            return \Yajra\DataTables\DataTables::query($builder);
+        }
+        
+        /**
+         * DataTables using Eloquent Builder.
+         *
+         * @param \Illuminate\Database\Eloquent\Builder|mixed $builder
+         * @return \Yajra\DataTables\DataTableAbstract|\Yajra\DataTables\EloquentDataTable 
+         * @static 
+         */ 
+        public static function eloquent($builder)
+        {
+            return \Yajra\DataTables\DataTables::eloquent($builder);
+        }
+        
+        /**
+         * DataTables using Collection.
+         *
+         * @param \Illuminate\Support\Collection|array $collection
+         * @return \Yajra\DataTables\DataTableAbstract|\Yajra\DataTables\CollectionDataTable 
+         * @static 
+         */ 
+        public static function collection($collection)
+        {
+            return \Yajra\DataTables\DataTables::collection($collection);
+        }
+        
+        /**
+         * DataTables using Collection.
+         *
+         * @param \Illuminate\Http\Resources\Json\AnonymousResourceCollection|array $collection
+         * @return \Yajra\DataTables\DataTableAbstract|\Yajra\DataTables\ApiResourceDataTable 
+         * @static 
+         */ 
+        public static function resource($resource)
+        {
+            return \Yajra\DataTables\DataTables::resource($resource);
+        }
+        
+        /**
+         * Get html builder instance.
+         *
+         * @return \Yajra\DataTables\Html\Builder 
+         * @throws \Exception
+         * @static 
+         */ 
+        public static function getHtmlBuilder()
+        {
+            return \Yajra\DataTables\DataTables::getHtmlBuilder();
+        }
+        
+        /**
+         * Register a custom macro.
+         *
+         * @param string $name
+         * @param object|callable $macro
+         * @return void 
+         * @static 
+         */ 
+        public static function macro($name, $macro)
+        {
+            \Yajra\DataTables\DataTables::macro($name, $macro);
+        }
+        
+        /**
+         * Mix another object into the class.
+         *
+         * @param object $mixin
+         * @return void 
+         * @throws \ReflectionException
+         * @static 
+         */ 
+        public static function mixin($mixin)
+        {
+            \Yajra\DataTables\DataTables::mixin($mixin);
+        }
+        
+        /**
+         * Checks if macro is registered.
+         *
+         * @param string $name
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasMacro($name)
+        {
+            return \Yajra\DataTables\DataTables::hasMacro($name);
+        }
+         
+    }
+ 
+}
+
+namespace Maatwebsite\Excel\Facades { 
+
+    class Excel {
+        
+        /**
+         * Create a new file
+         *
+         * @param $filename
+         * @param callable|null $callback
+         * @return \Maatwebsite\Excel\LaravelExcelWriter 
+         * @static 
+         */ 
+        public static function create($filename, $callback = null)
+        {
+            return \Maatwebsite\Excel\Excel::create($filename, $callback);
+        }
+        
+        /**
+         * Load an existing file
+         *
+         * @param string $file The file we want to load
+         * @param callback|null $callback
+         * @param string|null $encoding
+         * @param bool $noBasePath
+         * @param callback|null $callbackConfigReader
+         * @return \Maatwebsite\Excel\LaravelExcelReader 
+         * @static 
+         */ 
+        public static function load($file, $callback = null, $encoding = null, $noBasePath = false, $callbackConfigReader = null)
+        {
+            return \Maatwebsite\Excel\Excel::load($file, $callback, $encoding, $noBasePath, $callbackConfigReader);
+        }
+        
+        /**
+         * Set select sheets
+         *
+         * @param $sheets
+         * @return \Maatwebsite\Excel\LaravelExcelReader 
+         * @static 
+         */ 
+        public static function selectSheets($sheets = array())
+        {
+            return \Maatwebsite\Excel\Excel::selectSheets($sheets);
+        }
+        
+        /**
+         * Select sheets by index
+         *
+         * @param array $sheets
+         * @return $this 
+         * @static 
+         */ 
+        public static function selectSheetsByIndex($sheets = array())
+        {
+            return \Maatwebsite\Excel\Excel::selectSheetsByIndex($sheets);
+        }
+        
+        /**
+         * Batch import
+         *
+         * @param $files
+         * @param callback $callback
+         * @return \PHPExcel 
+         * @static 
+         */ 
+        public static function batch($files, $callback)
+        {
+            return \Maatwebsite\Excel\Excel::batch($files, $callback);
+        }
+        
+        /**
+         * Create a new file and share a view
+         *
+         * @param string $view
+         * @param array $data
+         * @param array $mergeData
+         * @return \Maatwebsite\Excel\LaravelExcelWriter 
+         * @static 
+         */ 
+        public static function shareView($view, $data = array(), $mergeData = array())
+        {
+            return \Maatwebsite\Excel\Excel::shareView($view, $data, $mergeData);
+        }
+        
+        /**
+         * Create a new file and load a view
+         *
+         * @param string $view
+         * @param array $data
+         * @param array $mergeData
+         * @return \Maatwebsite\Excel\LaravelExcelWriter 
+         * @static 
+         */ 
+        public static function loadView($view, $data = array(), $mergeData = array())
+        {
+            return \Maatwebsite\Excel\Excel::loadView($view, $data, $mergeData);
+        }
+        
+        /**
+         * Set filters
+         *
+         * @param array $filters
+         * @return \Excel 
+         * @static 
+         */ 
+        public static function registerFilters($filters = array())
+        {
+            return \Maatwebsite\Excel\Excel::registerFilters($filters);
+        }
+        
+        /**
+         * Enable certain filters
+         *
+         * @param string|array $filter
+         * @param bool|false|string $class
+         * @return \Excel 
+         * @static 
+         */ 
+        public static function filter($filter, $class = false)
+        {
+            return \Maatwebsite\Excel\Excel::filter($filter, $class);
+        }
+        
+        /**
+         * Get register, enabled (or both) filters
+         *
+         * @param string|boolean $key [description]
+         * @return array 
+         * @static 
+         */ 
+        public static function getFilters($key = false)
+        {
+            return \Maatwebsite\Excel\Excel::getFilters($key);
+        }
+         
+    }
+ 
+}
+
 
 namespace  { 
 
@@ -16607,6 +17529,14 @@ namespace  {
     class Flash extends \Laracasts\Flash\Flash {}
 
     class Debugbar extends \Barryvdh\Debugbar\Facade {}
+
+    class Gravatar extends \Creativeorange\Gravatar\Facades\Gravatar {}
+
+    class Agent extends \Jenssegers\Agent\Facades\Agent {}
+
+    class DataTables extends \Yajra\DataTables\Facades\DataTables {}
+
+    class Excel extends \Maatwebsite\Excel\Facades\Excel {}
  
 }
 

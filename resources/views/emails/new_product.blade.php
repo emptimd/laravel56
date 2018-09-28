@@ -1,0 +1,1 @@
+Privet vot silka <a href="{{ route('allStores') }}">AA</a>

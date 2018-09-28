@@ -39,51 +39,13 @@
 
     <script type="text/javascript">
         let path_ro = {{ $product->path_ro ? true : false }};
-        let path_ru = {{ $product->path_ru ? 1 : 0 }};
 
         $("#file-1").fileinput({
             initialPreview: [ '{{ asset('storage/'.$product->path_ro ) }}'],
             initialPreviewAsData: path_ro,
             initialPreviewShowDelete: false,
-
-            // initialPreviewConfig: [
-            //     { type: 'png' },
-            // ],
             theme: 'fa',
-            // uploadUrl: "/image-view",
-            // uploadExtraData: function() {
-            //     return {
-            //         _token: $("input[name='_token']").val(),
-            //     };
-            // },
-            allowedFileExtensions: ['jpg', 'png', 'gif', 'pdf'],
-            // overwriteInitial: false,
-            maxFileSize:2000,
-            maxFilesNum: 10,
-            showUpload: false,
-            showRemove: false,
-            slugCallback: function (filename) {
-                return filename.replace('(', '_').replace(']', '_');
-            }
-        });
-
-        let asset_path_ru = "{{ $product->path_ru ? asset('storage/'.$product->path_ru ) : '' }}";
-        $("#file-2").fileinput({
-            initialPreview: [ asset_path_ru ],
-            initialPreviewAsData: path_ru,
-            initialPreviewShowDelete: false,
-            // initialPreviewConfig: [
-            //     { type: 'png' },
-            // ],
-            theme: 'fa',
-            // uploadUrl: "/image-view",
-            // uploadExtraData: function() {
-            //     return {
-            //         _token: $("input[name='_token']").val(),
-            //     };
-            // },
-            allowedFileExtensions: ['jpg', 'png', 'gif', 'pdf'],
-            // overwriteInitial: false,
+            allowedFileExtensions: ['jpg', 'jpeg', 'png', 'gif', 'pdf'],
             maxFileSize:2000,
             maxFilesNum: 10,
             showUpload: false,
@@ -108,33 +70,7 @@
             //         _token: $("input[name='_token']").val(),
             //     };
             // },
-            allowedFileExtensions: ['jpg', 'png', 'gif', 'pdf'],
-            overwriteInitial: false,
-            maxFileSize:2000,
-            maxFilesNum: 10,
-            showUpload: false,
-            showRemove: false,
-            slugCallback: function (filename) {
-                return filename.replace('(', '_').replace(']', '_');
-            }
-        });
-
-        $("#photo-2").fileinput({
-            initialPreview: {!! $photos_ru !!},
-            initialPreviewAsData: {{ $has_photos_ru }},
-            initialPreviewShowDelete: true,
-            initialPreviewConfig: {!! $preview_config_ru !!},
-            // initialPreviewConfig: [
-            //     { type: 'png' },
-            // ],
-            theme: 'fa',
-            // uploadUrl: "/image-view",
-            // uploadExtraData: function() {
-            //     return {
-            //         _token: $("input[name='_token']").val(),
-            //     };
-            // },
-            allowedFileExtensions: ['jpg', 'png', 'gif', 'pdf'],
+            allowedFileExtensions: ['jpg', 'jpeg', 'png', 'gif', 'pdf'],
             overwriteInitial: false,
             maxFileSize:2000,
             maxFilesNum: 10,

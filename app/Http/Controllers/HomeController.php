@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateSubscriberRequest;
 use App\Models\Category;
 use App\Models\Contact;
 use App\Models\Product;
 use App\Models\Store;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Validator;
 
 class HomeController extends AppBaseController
@@ -19,7 +21,7 @@ class HomeController extends AppBaseController
     public function index()
     {
         $silder_products = Product::select(['id','name_ro','name_ru','path_ro','path_ru', 'until', 'slug'])->activeDate()->where('is_slider', 1)->limit(3)->get();
-        $best_products = Product::select(['id','name_ro','name_ru','path_ro','path_ru', 'until', 'slug'])->activeDate()->limit(3)->get();    /*->where('until', '>=', Carbon::now()->format('Y-m-d'))*/
+        $best_products = Product::select(['id','name_ro','name_ru','path_ro','path_ru', 'until', 'slug'])->activeDate()->orderBy('views', 'desc')->limit(3)->get();    /*->where('until', '>=', Carbon::now()->format('Y-m-d'))*/
 
 
         $category_products = Category::from('categories as c')->selectRaw('c.id,c.name_ro,c.name_ru,c.slug,p.id as p_id, p.name_ro as p_name_ro, p.name_ru as p_name_ru, p.path_ro, p.path_ru, p.until, p.slug as p_slug')
@@ -100,12 +102,18 @@ class HomeController extends AppBaseController
         return view('frontend.allStores', ['model' => $model]);
     }
 
-    public function subscribe(Request $request)
+    public function subscribe(CreateSubscriberRequest $request)
     {
 
-        dd($request->all());
+        $model = new \App\Models\Subscriber();
+        $model->email = $request->email;
+        $model->token = Str::random();
+        $model->is_active = 1;
+        $model->save();
 
-        return view('subscribe', []);
+        \Mail::to('emptimd@gmail.com')->send(new \App\Mail\NewProduct());
+
+        return back()->with('status', trans('subscribe.success'));
     }
 
     public function unsubscribe($token)

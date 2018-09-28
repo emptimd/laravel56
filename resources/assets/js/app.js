@@ -1,8 +1,31 @@
+$(function() {
+    let offset = 220;
+    let duration = 500;
+    let $crunchify = $('.crunchify-top');
 
-/**
- * First, we will load all of this project's Javascript utilities and other
- * dependencies. Then, we will be ready to develop a robust and powerful
- * application frontend using useful Laravel and JavaScript libraries.
- */
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > offset) {
+            $crunchify.fadeIn(duration);
+        } else {
+            $crunchify.fadeOut(duration);
+        }
+    });
 
-console.log('as1d12');
+    $crunchify.click(function(event) {
+        event.preventDefault();
+        $('html, body').animate({scrollTop: 0}, duration);
+        return false;
+    });
+
+    let $owl = $('.owl-carousel');
+    if($owl.length) {
+        $owl.owlCarousel({
+            items : 1,
+            loop: false,
+            center: true,
+            nav: true
+        });
+    }
+
+
+});

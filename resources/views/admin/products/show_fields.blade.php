@@ -12,7 +12,7 @@
 
 <!-- Path Ro Field -->
 <div class="form-group">
-    {!! Form::label('path_ro', 'Path Ro:', ['class' =>'col-md-2']) !!}
+    {!! Form::label('path_ro', 'File:', ['class' =>'col-md-2']) !!}
     <div class="uploaded_image"><img src="{{ url('storage/'.$product->path_ro) }}" alt=""></div>
 </div>
 
@@ -29,11 +29,11 @@
 </div>
 
 <!-- Path Ru Field -->
-<div class="form-group">
-    {!! Form::label('path_ru', 'Path Ru:', ['class' =>'col-md-2']) !!}
-    <div class="uploaded_image"><img src="{{ url('storage/'.$product->path_ru) }}" alt=""></div>
+{{--<div class="form-group">--}}
+    {{--{!! Form::label('path_ru', 'Path Ru:', ['class' =>'col-md-2']) !!}--}}
+    {{--<div class="uploaded_image"><img src="{{ url('storage/'.$product->path_ru) }}" alt=""></div>--}}
 
-</div>
+{{--</div>--}}
 
 <!-- Is slider Field -->
 <div class="form-group">
